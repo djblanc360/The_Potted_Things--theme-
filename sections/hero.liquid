@@ -1,0 +1,217 @@
+{% if section.settings.heroVideo != blank %}
+
+<style>
+  #homeHero {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow: hidden;
+  }
+  .video-background {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 0;
+  }
+  .homeHeroContainer { position: relative; z-index: 1; }
+  .introDisc { z-index: 1; }
+  @media screen and (max-width:767px) {
+    .video-background { max-height: 100%; }
+  }
+</style>
+
+<section id="homeHero" class="py-md-5">
+  <div class="container homeHeroContainer">
+    <div class="row h-100">
+      <div class="col-md-6 d-sm-flex align-items-center h-100">
+        <div class="homeHeroText">
+          <h1 style="color:{{ section.settings.textColor }} !important">{{ section.settings.header }}</h1>
+          <p style="color:{{ section.settings.textColor }} !important">{{ section.settings.text }}</p>
+          <p class="buttonContainer">
+            {% assign btnOneOpacity = section.settings.btnOneOpacity | divided_by: 100.0 %}
+            {% assign btnTwoOpacity = section.settings.btnTwoOpacity | divided_by: 100.0 %}
+            <a href="{{ section.settings.btnLink }}" class="btn" style="{% if section.settings.btnColor %}background-color: {{ section.settings.btnColor | color_modify: 'alpha',  btnOneOpacity}} !important;{% endif %} {% if section.settings.btnTextColor %}color: {{ section.settings.btnTextColor }} !important;{% endif %}">{{ section.settings.btnText }}</a>
+            {% if section.settings.btnTextTwo != blank %}
+            	<a href="{{ section.settings.btnLinkTwo }}" class="btn ml-sm-3 mt-3 mt-sm-0" style="{% if section.settings.btnColorTwo %}background-color: {{ section.settings.btnColorTwo | color_modify: 'alpha', btnTwoOpacity }} !important;{% endif %} {% if section.settings.btnTextColorTwo %}color: {{ section.settings.btnTextColorTwo }} !important;{% endif %}">{{ section.settings.btnTextTwo }}</a>
+            {% endif %}
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6"></div>
+    </div>
+  </div>
+
+  {% if section.settings.disc != blank %}
+  <div class="introDisc">
+    <div class="container">
+      <p>{{ section.settings.disc }}</p>
+    </div>
+  </div>
+  {% endif %}
+
+  <video class="d-none d-sm-block video-background" autoplay loop muted poster="{{ section.settings.heroPoster | img_url: '1920x', crop: 'center' }}">
+    <source src="{{ section.settings.heroVideo }}" type="video/mp4">
+  </video>
+  <video class="d-block d-sm-none video-background" autoplay loop muted poster="{{ section.settings.heroPoster | img_url: '1920x', crop: 'center' }}">
+    <source src="{{ section.settings.heroVideoMobile }}" type="video/mp4">
+  </video>
+</section>
+
+{% else %}
+
+<style>
+  #homeHero { background-image: url('{{ section.settings.desktopHero | img_url: '1920x', crop: 'center' }}'); }
+  @media screen and (max-width: 767px) {
+    #homeHero { background-image: url('{{ section.settings.mobileHero | img_url: '767x', crop: 'center' }}'); }
+  }
+</style>
+
+<section id="homeHero" class="py-md-5">
+  <div class="container homeHeroContainer">
+    <div class="row h-100">
+      <div class="col-md-6 d-sm-flex align-items-center h-100">
+        <div class="homeHeroText">
+          <h1 style="color:{{ section.settings.textColor }} !important">{{ section.settings.header }}</h1>
+          <p style="color:{{ section.settings.textColor }} !important">{{ section.settings.text }}</p>
+          <p class="buttonContainer">
+            {% assign btnOneOpacity = section.settings.btnOneOpacity | divided_by: 100.0 %}
+            {% assign btnTwoOpacity = section.settings.btnTwoOpacity | divided_by: 100.0 %}
+            <a href="{{ section.settings.btnLink }}" class="btn" style="{% if section.settings.btnColor %}background-color: {{ section.settings.btnColor | color_modify: 'alpha',  btnOneOpacity}} !important;{% endif %} {% if section.settings.btnTextColor %}color: {{ section.settings.btnTextColor }} !important;{% endif %}">{{ section.settings.btnText }}</a>
+            {% if section.settings.btnTextTwo != blank %}
+            	<a href="{{ section.settings.btnLinkTwo }}" class="btn ml-sm-3 mt-3 mt-sm-0" style="{% if section.settings.btnColorTwo %}background-color: {{ section.settings.btnColorTwo | color_modify: 'alpha', btnTwoOpacity }} !important;{% endif %} {% if section.settings.btnTextColorTwo %}color: {{ section.settings.btnTextColorTwo }} !important;{% endif %}">{{ section.settings.btnTextTwo }}</a>
+            {% endif %}
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6"></div>
+    </div>
+  </div>
+
+  {% if section.settings.disc != blank %}
+  <div class="introDisc">
+    <div class="container">
+      <p>{{ section.settings.disc }}</p>
+    </div>
+  </div>
+  {% endif %}
+
+</section>
+
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Home Hero",
+    "settings": [
+      {
+        "id": "heroVideo",
+        "type": "text",
+        "label": "Hero Video URL"
+      },
+      {
+        "id": "heroVideoMobile",
+        "type": "text",
+        "label": "Mobile Hero Video URL"
+      },
+      {
+        "id": "heroPoster",
+        "type": "image_picker",
+        "label": "Hero Poster Image"
+      },
+      {
+        "id": "desktopHero",
+        "type": "image_picker",
+        "label": "Desktop Hero Image"
+      },
+      {
+        "id": "mobileHero",
+        "type": "image_picker",
+        "label": "Mobile Hero Image"
+      },
+      {
+        "id": "header",
+        "type": "text",
+        "label": "Header"
+      },
+      {
+        "id": "text",
+        "type": "text",
+        "label": "Text"
+      },
+      {
+        "id": "textColor",
+        "type": "color",
+        "label": "Text Color",
+		"default": "#ffffff"
+      },
+      {
+        "id": "btnText",
+        "type": "text",
+        "label": "Button Text"
+      },
+      {
+        "id": "btnTextColor",
+        "type": "color",
+        "label": "Button Text Color"
+      },
+      {
+        "id": "btnColor",
+        "type": "color",
+        "label": "Button Color"
+      },
+      {
+        "id": "btnOneOpacity",
+        "type": "range",
+        "label": "Button One Opacity",
+		"min": 0,
+		"max": 100,
+		"default": 100
+      },
+      {
+        "id": "btnLink",
+        "type": "text",
+        "label": "Button Link"
+      },
+      {
+        "id": "btnTextTwo",
+        "type": "text",
+        "label": "Button 2 Text"
+      },
+      {
+        "id": "btnTextColorTwo",
+        "type": "color",
+        "label": "Button 2 Text Color"
+      },
+      {
+        "id": "btnColorTwo",
+        "type": "color",
+        "label": "Button 2 Color"
+      },
+      {
+        "id": "btnTwoOpacity",
+        "type": "range",
+        "label": "Button Two Opacity",
+		"min": 0,
+		"max": 100,
+		"default": 100
+      },
+      {
+        "id": "btnLinkTwo",
+        "type": "text",
+        "label": "Button 2 Link"
+      },
+      {
+        "id": "disc",
+        "type": "text",
+        "label": "Disclaimer"
+      }
+    ]
+  }
+{% endschema %}
