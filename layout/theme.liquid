@@ -39,6 +39,14 @@
 </head>
 
 <body>
+  
+  {% section 'mobile-menu' %}
+
+
+  <div class="slideOutCover"></div>
+
+  {% section 'theme-header' %}
+  
   {{ content_for_layout }}
 
   {{ 'general.js' | asset_url | script_tag }}
