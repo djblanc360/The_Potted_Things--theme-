@@ -27,7 +27,7 @@
       "featured-collection": {
         "type": "featured-collection",
         "settings": {
-          "featureCollection": "indoor-plants"
+          "featureCollection": "featured"
         }
       }
     },
