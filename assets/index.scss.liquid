@@ -1,0 +1,82 @@
+
+#homeHero {
+	background-color: $pink;
+	background-size: cover;
+	background-position: center;
+	color: #fff;
+	position: relative;
+	@media screen and (max-width: 767px) {
+	    background-position-y: 0;
+    	background-size: 100% auto;
+	}
+	.homeHeroContainer {
+		height: 80vh;
+		@media screen and (max-width: 767px) {
+		    background-position-y: 0;
+	    	background-size: 100% auto;
+	    	height: 615px;
+		}
+	}
+	h1 {
+		text-align: center;
+	    padding-top: 10vh;
+		@media screen and (min-width:768px) {
+			padding-top: 0;
+			font-size: 58px;
+			text-align: left;
+		}
+		em { font-weight: 400; font-style: italic; }
+	}
+	p {
+		color: #fff;
+		font-size: 20px;
+		@media screen and (max-width:767px) {
+			text-align: center;
+			padding-left: 30px;
+			padding-right: 30px;
+		}
+	}
+	@media screen and (max-width:767px) {
+		.buttonContainer {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			text-align: center;
+			padding-left: 15px;
+			padding-right: 15px;
+			margin-bottom: 30px;
+			.btn {
+				width: 100%;
+				backdrop-filter: blur(8px);
+	    		background-color: rgba(255,255,255,0.2);
+			}
+		}
+	}
+	.introDisc {
+		position: absolute;
+		bottom: 1rem;
+		right: 0;
+	    left: 0;
+		p {
+			font-family: 'Cormorant', Times, serif;
+			font-weight: 400;
+			font-style: italic;
+			font-size: 24px;
+			color: #000;
+			line-height: 32px;
+		}
+		@media screen and (max-width:767px) {
+		    position: relative;
+    		background: #fff;
+		    padding-top: 2rem;
+    		padding-bottom: 1rem;
+    		top: 0;
+    		p {
+    			color: #000;
+    			font-size: 18px;
+    			padding: 0;
+    		}
+		}
+	}
+}
