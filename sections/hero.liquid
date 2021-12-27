@@ -16,7 +16,7 @@
       <div class="col-md-6 d-sm-flex align-items-center h-100">
         <div class="homeHeroText">
 
-		<div class="homeHeroOverlay"></div>
+		<div class="homeHeroOverlay" style="background-color:{{ section.settings.overlayOpacityColor | color_modify: 'alpha',  overlayOpacity }} !important"></div>
           
           <h1 style="color:{{ section.settings.textColor }} !important">{{ section.settings.header }}</h1>
           <p style="color:{{ section.settings.textColor }} !important">{{ section.settings.text }}</p>
@@ -65,6 +65,19 @@
         "id": "header",
         "type": "text",
         "label": "Header"
+      },
+	  {
+        "id": "overlayOpacityColor",
+        "type": "color",
+        "label": "Opacity Color"
+      },
+      {
+        "id": "overlayOpacity",
+        "type": "range",
+        "label": "Overlay Opacity",
+		"min": 0,
+		"max": 100,
+		"default": 0
       },
       {
         "id": "text",
