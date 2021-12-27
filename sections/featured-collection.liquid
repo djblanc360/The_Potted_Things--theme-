@@ -1,8 +1,114 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+<style>
+  #featured-collection-{{ section.id }} {
+    background-color: #F9F9F9;
   }
+  #featured-collection-{{ section.id }} .fa-chevron-left {
+    left: 1rem;
+  }
+  #featured-collection-{{ section.id }} .fa-chevron-right {
+    right: 1rem;
+  }
+}
+</style>
+
+<section id="featured-collection-{{ section.id }}" class="content-section">
+  <h2 class="text-center mb-5">Best Sellers</h2>
+  <div class="featuredSlider">
+
+    {% if section.settings.featureCollection %}
+      {% assign collection = section.settings.featureCollection %}
+      {% for product in collections[collection].products %}
+
+        <div class="featuredSliderItem mx-4">
+          {% include 'prod-grid-item' %}
+        </div>
+
+      {% else %}
+        <h4>No matches - {{ inputCollection }}</h4>
+        <p>There doesn't seem to be any products available of that kind.</p>
+        <p><a href="/collections/all" class="btn btn-primary">Shop All Products</a></p>
+      {% endfor %}
+    {% endif %}
+
+  </div>
+
+  {% if section.settings.featureCollection %}
+    {% assign collection = section.settings.featureCollection %}
+    {% for product in collections[collection].products %}
+      <!-- Product Quick View Modal -->
+      <div class="modal fade" id="modal-{{ product.handle }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header border-0">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              {% include 'pdp-quick' %}
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+</section>
+
+<script>
+  $('.featuredSlider').slick({
+    dots: false,
+    arrows: true,
+    infinite: true,
+    speed: 300,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    centerMode: true,
+    centerPadding: '60px',
+    prevArrow: '<i class="fas fa-chevron-left"></i>',
+    nextArrow: '<i class="fas fa-chevron-right"></i>',
+    responsive: [
+      {
+        breakpoint: 1920,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Featured Collection",
+  "class": "featured-collection-section",
+  "settings": [
+    {
+     "type": "collection",
+     "id": "featureCollection",
+     "label": "Collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collection",
+      "category": "Shop"
+    }
+  ]
+}
 {% endschema %}
 
 {% stylesheet %}
