@@ -1,0 +1,18 @@
+{% assign current_variant = product.selected_or_first_available_variant %}
+{% assign featured_image = current_variant.featured_image | default: product.featured_image %}
+
+<section id="pdpMain" class="py-0">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-sm-6">
+        {% include 'pdp-quick-photos' %}
+      </div>
+
+      <div class="col-sm-6">
+        {% include 'pdp-quick-details' %}
+      </div>  
+      
+    </div>
+  </div>
+</section>

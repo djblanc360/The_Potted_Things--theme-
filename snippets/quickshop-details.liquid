@@ -1,0 +1,76 @@
+<div id="pdpDetails" class = "quickDetails">
+  
+  {% assign product_collection = product.collections.first %}
+  {% if product_collection %}
+  	<p class="prodCollection mb-0">{{ product_collection.title | link_to: product_collection.url }}</p>
+  {% endif %}
+  <h1>{{ product.title }}</h1>
+  {% render 'okendo-reviews-product-rating-summary', product: product %}
+  <form action="/cart/add" method="post" enctype="multipart/form-data" class="AddToCartForm">
+    <div class="prodPrice">
+      <p class="mb-0 mt-1 prodPriceRange">{{ current_variant.price | money }}</p>
+      <p>(afterpay goes here)</p>
+    </div>
+    <div class="prodDescription my-3">
+      {{ product.description }}
+    </div>
+    <div class="prodOptions">
+      <div class = "row mb-5">
+        {% for variant in product.variants %}
+          <div class = "col-auto mb-3">
+            {% assign image = variant.featured_image %}
+            <div class = "quickShopVariantImg">
+                {% if forloop.first and image == blank%}
+                	{% assign image = product.featured_image %}
+                {% endif %}
+              	<img src="{{ image | img_url: '65x65' }}" alt="{{ image.alt | escape }}" original_src = "{{ image | img_url: 'large' }}">
+              <div class = "variantTitle">{{variant.title}}</div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <select name="id" class="productSelect d-none">
+        {% for variant in product.variants %}
+          {% if variant.available %}
+            <option value="{{ variant.id }}">
+              {{ variant.title }} - {{ variant.price | money_with_currency }}
+            </option>
+          {% else %}
+            <option disabled="disabled">
+              {{ variant.title }} - sold out
+            </option>
+          {% endif %}
+        {% endfor %}
+      </select>
+      
+      <div class = "variantTitles">
+        {% for variant in product.variants %}
+          {% if variant.available %}
+        	<p class = "{% unless forloop.first %} d-none  {% endunless %} mb-0">{{ variant.title }} - {{ variant.price | money_with_currency }}</p>
+          {% else %}
+            <p class = "{% unless forloop.first %} d-none {% endunless %} mb-0">{{ variant.title }} - sold-out</p>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div class = "inputContainer text-center">
+        <div class = "minusQty"><i class="fal fa-minus"></i></div>
+        <input type="number" name="quantity" class="quantitySelector my-3 text-center" value="1" min="1">
+        <div class = "addQty"><i class="fal fa-plus"></i></div>
+      </div>
+    </div>
+    <div class = "row">
+      <div class = "col-8 col-sm-7">
+        <div class="prodAddToCart">
+          <button type="submit" name="add" class="AddToCart prodATC btn btn-primary mb-2">Add to Bag</button>
+          <p><a href="{{product.url}}" class="addToFavorites">More Details</a></p>
+        </div>
+      </div>
+      <div class = "col-4 col-sm-5 d-flex align-items-center justify-content-start">
+<!--         <p class = "favoriteBtn"><i class="far fa-heart"></i></p> -->
+      </div>
+    </div>
+  </form>
+  
+</div>
+
+
