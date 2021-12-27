@@ -54,6 +54,7 @@
 </section>
 
 <script>
+  /*
   $('.featuredSlider').slick({
     dots: false,
     arrows: true,
@@ -80,6 +81,28 @@
           slidesToScroll: 1,
         }
       },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  });
+  */
+  $('.featuredSlider').slick({
+    dots: false,
+    arrows: true,
+    infinite: true,
+    speed: 300,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    centerMode: true,
+    centerPadding: '60px',
+    prevArrow: '<i class="fas fa-chevron-left"></i>',
+    nextArrow: '<i class="fas fa-chevron-right"></i>',
+    responsive: [
       {
         breakpoint: 480,
         settings: {
