@@ -2,8 +2,13 @@
 
 <style>
 
-
+/*
   #homeHero { background-image: url('{{ section.settings.desktopHero | img_url: '1920x', crop: 'center' }}'); }
+*/   
+  @media screen and (min-width: 768px) {
+  .homeHeroImg { background-image: url('{{ section.settings.desktopHero | img_url: '1920x', crop: 'center' }}'); }
+  }
+  
   @media screen and (max-width: 767px) {
     #homeHero { background-image: url('{{ section.settings.mobileHero | img_url: '767x', crop: 'center' }}'); }
   }
@@ -13,6 +18,11 @@
 <section id="homeHero" class="py-md-5">
   <div class="container homeHeroContainer">
     <div class="row h-100">
+      
+      <div class="col-md-6">
+        <div class="homeHeroImg"></div>
+      </div>
+      
       <div class="col-md-6 d-sm-flex align-items-center h-100">
        <div class="homeHeroTextContainer">
          {% assign overlayOpacity = section.settings.overlayOpacity | divided_by: 100.0 %}
@@ -35,7 +45,7 @@
         
        </div> 
       </div>
-      <div class="col-md-6"></div>
+      
     </div>
   </div>
 
