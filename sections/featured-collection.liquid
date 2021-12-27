@@ -14,22 +14,22 @@
 <section id="featured-collection-{{ section.id }}" class="content-section">
   <h2 class="text-center mb-5">Best Sellers</h2>
   <div class="featuredSlider">
-	<div>
+	
     {% if section.settings.featureCollection %}
       {% assign collection = section.settings.featureCollection %}
       {% for product in collections[collection].products %}
-
+		<div>
         <div class="featuredSliderItem mx-4">
           {% include 'product-item' %}
         </div>
-
+		</div>
       {% else %}
         <h4>No matches - {{ inputCollection }}</h4>
         <p>There doesn't seem to be any products available of that kind.</p>
         <p><a href="/collections/all" class="btn btn-primary">Shop All Products</a></p>
       {% endfor %}
     {% endif %}
-    </div>
+    
   </div>
 
   {% if section.settings.featureCollection %}
