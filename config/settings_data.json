@@ -1,6 +1,34 @@
 {
-  "current": "Default",
+  "current": {
+    "sections": {
+      "hero": {
+        "type": "hero",
+        "settings": {
+          "desktopHero": "shopify:\/\/shop_images\/hero-plant.jpg",
+          "mobileHero": "shopify:\/\/shop_images\/hero-plant.jpg",
+          "header": "The Potted Things",
+          "text": "Home of things in pots",
+          "textColor": "#a3b4b1",
+          "btnText": "",
+          "btnTextColor": "",
+          "btnColor": "",
+          "btnOneOpacity": 100,
+          "btnLink": "",
+          "btnTextTwo": "",
+          "btnTextColorTwo": "",
+          "btnColorTwo": "",
+          "btnTwoOpacity": 100,
+          "btnLinkTwo": "",
+          "disc": ""
+        }
+      }
+    },
+    "content_for_index": [
+
+    ]
+  },
   "presets": {
-    "Default": {}
+    "Default": {
+    }
   }
 }
