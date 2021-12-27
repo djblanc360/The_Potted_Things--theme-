@@ -1,0 +1,343 @@
+<div class="container-fluid">
+  <div class="drawerSearchContainer">
+    <div id="pageheader">
+      <div class="util-area">
+        <div class="row">
+          <div class="col-11">
+            <form action="/search" method="get" role="search">
+              <input class="headerSearch" type="search" name="q" placeholder="I'm looking for..." value="{{ search.terms | escape }}">
+              <button type="submit" class="btnSubmit" disabled>search</button>
+            </form>
+          </div>
+          <div class="col-1 d-flex align-items-center justify-content-center px-0">
+            <img class="mobileMenuCloseLink" src="https://cdn.shopify.com/s/files/1/1600/4387/files/icon_close.svg?v=1603484701" alt="Close Mobile Menu" />
+          </div>
+        </div>
+
+
+        </div><!-- /.util-area -->
+    </div><!-- /#pageheader --> 
+  </div>
+  <div class="drawerSearchHeader">
+    <div class="row">
+      <div class="col-7 pr-sm-5">
+        <hr>
+        <div class="row mb-4">
+          <div class="col-sm-9">
+            <p class="drawerSearchHeaderTitle text-uppercase mb-0">Shop</p>
+          </div>
+          <div class="col-sm-3">
+            <!--<p id="viewAll" class="drawerSearchHeaderTitle text-uppercase text-right mb-0"><a href="/collections/all">View All</a></p>-->
+          </div>
+        </div>
+        <div class="drawerSearchNoProducts col-sm-12">
+            <div class="row mb-4">
+                <p class="mb-0 searchNoResults"><span>No results found. Try a different search or </span><a href="/collections/all">check out all our products.</a></p>
+            </div>
+        </div>
+        <div class="drawerSearchProducts">
+          <div class="row">
+            <div class="resultsProduct col-sm-4">
+              <a href="">
+                <img src="" alt="">
+              </a>
+              <p class="mt-3"><a class="searchResultProdTitle" href=""></a></p>
+            </div>
+            <div class="resultsProduct col-sm-4">
+              <a href="#">
+                <img src="" alt="">
+              </a>
+              <p class="mt-3"><a class="searchResultProdTitle" href=""></a></p>
+            </div>
+            <div class="resultsProduct col-sm-4">
+              <a href="#">
+                <img src="" alt="">
+              </a>
+              <p class="mt-3"><a class="searchResultProdTitle" href=""></a></p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-5">
+        <div class="drawerSearchArticles">
+          <hr>
+          <div class="row mb-4">
+            <div class="col-sm-6">
+              <p class="drawerSearchHeaderTitle text-uppercase mb-0">Journal</p>
+            </div>
+            <div class="col-sm-6">
+              <!--<p class="drawerSearchHeaderTitle text-uppercase text-right mb-0"><a href="/blogs/journal/">View All</a></p>-->
+            </div>
+          </div>
+        <div class="drawerSearchNoArticles col-sm-12">
+            <div class="row mb-4">
+              <p class="mb-0 searchNoResults"><span>No results found. Try a different search or </span><a href="/blogs/journal">check out all our articles.</a></p>
+            </div>
+        </div>
+          <ul class="list-unstyled ml-0 pl-0">
+            <li class="list-unstyled-item mb-3">
+              <p class="mb-0">
+                <a class="resultsArticle" href=""></a>
+              </p>
+            </li>
+            <li class="list-unstyled-item mb-3">
+              <p class="mb-0">
+                <a class="resultsArticle" href=""></a>
+              </p>
+            </li>
+            <li class="list-unstyled-item mb-3">
+              <p class="mb-0">
+                <a class="resultsArticle" href=""></a>
+              </p>
+            </li>
+            <li class="list-unstyled-item mb-3">
+              <p class="mb-0">
+                <a class="resultsArticle" href=""></a>
+              </p>
+            </li>
+            <li class="list-unstyled-item mb-3">
+              <p class="mb-0">
+                <a class="resultsArticle" href=""></a>
+              </p>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  
+$(document).ready(function(){
+
+
+  
+    $('.headerSearch').on('input',function(e) {  //'#mainSearch'
+      
+      console.log("test on input - header-search.liquid");
+      var test = $('.headerSearch').val();	
+      console.log('test: ' + test);
+      
+    
+let idme1 = test.toUpperCase().indexOf('ID.ME') > -1;
+let idme2 = test.toUpperCase().indexOf('IDME') > -1;
+      
+  if(test == "") {
+	
+    console.log('nothing');
+  /* CLEAR SEARCH */
+        $('.resultsProduct a').removeAttr('href');
+        $('.resultsProduct img').removeAttr('src');
+        $("a.searchResultProdTitle").empty();
+        $('.drawerSearchNoProducts').css("display","block");
+    
+        $(".resultsArticle").empty();
+        $('.drawerSearchNoArticles').css("display","block");
+    
+    
+  } else if (idme1 || idme2) {
+     
+	console.log("has it");
+	Idme();
+     
+  } else {
+      
+/* MULTIPLE WORDS */
+  let multiple = test.trim().indexOf(' ') != -1;
+  console.log('multiple: ' + multiple);
+/* END MULTIPLE WORDS */
+
+   	//var data = {"type":"product","type":"article"};
+
+    if(multiple) {
+      
+        var result = test.replace(/ /g, ' OR ');
+        console.log('result: ' + result);
+		getProducts(result);
+      	getArticles(result);
+      
+    } else {
+      
+      	getProducts(test);
+      	getArticles(test);
+    }
+
+    
+	}   
+
+    });
+
+  });
+  
+  
+/* PRODUCTS */  
+  function getProducts(products) {
+    
+    let refill = ' -refill';
+    products = products.concat(refill);
+    //products += " -refill";
+    console.log("products: " + products);
+  
+    $.getJSON("/search/suggest.json", {
+      "q": products,
+      "resources": {
+        "type": "product",
+        "limit": 3,
+        "options": {
+          "unavailable_products": "last",
+          "fields": "title,product_type,variants.title,tag"
+        }
+      }
+      
+    }).done(function(response) {
+
+      var productSuggestions = response.resources.results.products;
+        //console.log(response);
+        //console.log(productSuggestions);
+
+      var totalProducts = productSuggestions.length;
+      console.log("productSuggestions length: " + totalProducts);
+
+
+      if (productSuggestions.length > 0) {
+
+
+
+        $('.drawerSearchHeader').css("display","block");
+        $('.drawerSearchNoProducts').css("display","none");
+
+
+        $('.drawerSearchProducts .resultsProduct').each(function (i) {
+
+          //$('.resultsProduct').empty();
+
+
+          var productSuggestion = productSuggestions[i];
+          //console.log("product Suggestion: " + productSuggestion);
+
+        if (productSuggestion == null){
+
+          $(this).find('a').removeAttr('href');
+          $(this).find('img').removeAttr('src');
+          $(this).find("a.searchResultProdTitle").empty();
+
+        } else {
+
+          var productTitle = productSuggestion.title;
+          var productImageURL = productSuggestion.featured_image.url;
+          var productURL = productSuggestion.url;
+
+          console.log("productTitle: " + productTitle);
+          //console.log("productImageURL: " + productImageURL);
+          //console.log("productURL: " + productURL);
+          $(this).find('a').attr("href", productURL);
+          $(this).find('img').attr("src", productImageURL);
+          $(this).find("a.searchResultProdTitle").text(productTitle);
+
+        }
+
+        });
+
+      } else {
+        console.log('no product results');
+        $('.resultsProduct a').removeAttr('href');
+        $('.resultsProduct img').removeAttr('src');
+        $("a.searchResultProdTitle").empty();
+        $('.drawerSearchNoProducts').css("display","block");
+      }
+    });
+  
+    
+      
+    
+  }
+/* END PRODUCTS */
+  
+/* BLOG */ 
+  function getArticles(articles) {
+    
+    $.getJSON("/search/suggest.json", {
+      "q": articles,
+      "resources": {
+        "type": "article",
+        "limit": 5
+      }
+    }).done(function(response) {
+
+      var articleSuggestions = response.resources.results.articles;
+        //console.log(response);
+        //console.log(articleSuggestions);
+      var totalArticles = articleSuggestions.length;
+      console.log("articleSuggestions length: " + totalArticles);
+
+      if (articleSuggestions.length > 0) {
+
+        $('.drawerSearchHeader').css("display","block");
+        $('.drawerSearchNoArticles').css("display","none");
+
+        $('.drawerSearchArticles .resultsArticle').each(function (i) {
+
+          var articleSuggestion = articleSuggestions[i];
+          
+          
+          if (articleSuggestion == null){
+            
+            $(this).empty();
+            
+          } else {
+            
+          
+
+            var articleTitle = articleSuggestion.title;
+            var articleURL = articleSuggestion.url;
+
+            console.log("articleTitle: " + articleTitle);
+            //console.log("articleURL: " + articleURL);
+
+            $(this).text(articleTitle);
+            $(this).attr("href", articleURL);
+          
+          }
+
+        });
+
+
+      } else {
+        console.log('no article results');
+        $(".resultsArticle").empty();
+        $('.drawerSearchNoArticles').css("display","block");
+      }
+
+    });  
+    
+  }
+/* END BLOG */
+  
+  
+  function Idme() {
+    
+    
+    $('.resultsProduct a').removeAttr('href');
+    $('.resultsProduct img').removeAttr('src');
+    $("a.searchResultProdTitle").empty();
+    
+    $(".drawerSearchArticles .resultsArticle").eq(0).text("Essential Educator");
+    $(".drawerSearchArticles .resultsArticle").eq(0).attr("href", "/pages/essential-educators");
+
+
+    $(".drawerSearchArticles .resultsArticle").eq(1).text("Healthcare Heroes");
+    $(".drawerSearchArticles .resultsArticle").eq(1).attr("href", "/pages/healthcare-heroes");
+
+    $(".drawerSearchArticles .resultsArticle").eq(2).empty();
+    $(".drawerSearchArticles .resultsArticle").eq(3).empty();
+    $(".drawerSearchArticles .resultsArticle").eq(4).empty();
+
+    $('.drawerSearchNoProducts').css("display","block");
+    $('.drawerSearchNoArticles').css("display","none");
+
+  }
+</script>
