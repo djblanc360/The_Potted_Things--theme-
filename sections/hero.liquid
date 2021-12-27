@@ -16,7 +16,7 @@
       <div class="col-md-6 d-sm-flex align-items-center h-100">
         <div class="homeHeroText">
 
-{% comment %}
+
           <h1 style="color:{{ section.settings.textColor }} !important">{{ section.settings.header }}</h1>
           <p style="color:{{ section.settings.textColor }} !important">{{ section.settings.text }}</p>
           <p class="buttonContainer">
@@ -27,7 +27,7 @@
             	<a href="{{ section.settings.btnLinkTwo }}" class="btn ml-sm-3 mt-3 mt-sm-0" style="{% if section.settings.btnColorTwo %}background-color: {{ section.settings.btnColorTwo | color_modify: 'alpha', btnTwoOpacity }} !important;{% endif %} {% if section.settings.btnTextColorTwo %}color: {{ section.settings.btnTextColorTwo }} !important;{% endif %}">{{ section.settings.btnTextTwo }}</a>
             {% endif %}
           </p>
-{% endcomment %}
+
 
         </div>
       </div>
