@@ -1,0 +1,32 @@
+<div class="prodGridContainer">
+	<div class="prodGridItem">
+		<div class="prodGridImg mb-4">
+			<a href="{{ product.url }}">
+				<img class = "{% if product.images[1] %} first-img {% endif %}" src="{{ product.featured_image | img_url: '500x500', crop: 'center' }}" alt=" {{ product.featured_image | alt }}">
+              	{% if product.images[1] %} <img class="second-img" src="{{ product.images[1] | product_img_url: '500x500', crop: 'center' }}" alt="{{ product.featured_image.alt | escape }}"> {% endif %}
+			</a>
+		</div>
+		<div class="prodGridText mb-4">
+			<div class="row">
+				<div class="col-8">
+					{% render 'okendo-reviews-product-rating-summary', product: product %}
+					{% for collection in product.collections limit: 1 %}
+					    <p class="mb-0 prodGridCat">{{ collection.title }}</p>
+					{% endfor %}
+					
+					<p class="mb-0 prodGridTitle"><a href="{{ product.url }}">{{ product.title }}</a></p>
+				</div>
+				<div class="col-4">
+					<p class="mb-0">&nbsp;</p>
+					<p class="mb-0 text-end prodGridStarting">Starts At</p>
+					<p class="mb-0 text-end prodGridPrice">{{ product.price_min | money }}</p>
+				</div>
+			</div>
+		</div>
+		<div class="prodGridCTA">
+			<p class="mb-0 text-center">
+				<button href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-{{ product.handle }}">Quick Shop</button>
+			</p>
+		</div>
+	</div>
+</div>
