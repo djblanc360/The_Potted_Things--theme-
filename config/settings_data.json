@@ -23,6 +23,12 @@
           "btnLinkTwo": "collections\/office-collection",
           "disc": ""
         }
+      },
+      "featured-collection": {
+        "type": "featured-collection",
+        "settings": {
+          "featureCollection": "indoor-plants"
+        }
       }
     },
     "content_for_index": [
