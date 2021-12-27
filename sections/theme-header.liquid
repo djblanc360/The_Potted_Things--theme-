@@ -56,7 +56,7 @@
                 <div class="row h-100">
                   <div class="col-sm-11 d-flex align-items-center justify-content-end pr-0">
                     <form class="addCart" action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm" data-productid="{{product.id}}">
-                        {% if product.available %}{% include 'subscription-product' %}{% endif %}
+                        
 
                         <select name="id" id="productSelect" data-productid="{{product.id}}">
                           {% for variant in product.variants %}
@@ -98,47 +98,7 @@
     </div>
   
       <div id="mobileAddToCart">
-        {% if product.metafields.subscriptions.subscription_id  %}
         
-        <button type="submit" name="add" id="buyNow" class="btn btnMain">Buy Now</button>
-        
-        <div id="mobileAddDash" class="container hide px-2">
-          <button id="closeDash">
-            <img class="lazyload" data-src="https://cdn.shopify.com/s/files/1/1600/4387/files/icon_close.svg?v=1603484701" alt="Close Mobile Buy Menu">
-          </button>
-          <div class="row">
-            <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm" data-productid="{{product.id}}">
-                {% if product.available %}{% include 'subscription-product' %}{% endif %}
-
-                <select name="id" id="productSelect" data-productid="{{product.id}}">
-                  {% for variant in product.variants %}
-                    {% if variant.available %}
-                      <option value="{{ variant.id }}">
-                        {{ variant.title }} - {{ variant.price | money_with_currency }}
-                      </option>
-                    {% else %}
-                      <option disabled="disabled">
-                        {{ variant.title }} - sold out
-                      </option>
-                    {% endif %}
-                  {% endfor %}
-                </select>
-
-                <div class="">
-                  <span>{{ current_variant.price | money }}</span>
-                </div>
-                
-
-                <!--<label for="Quantity">quantity</label>-->
-                <input style="visibility:hidden;" type="number" id="Quantity" name="quantity" value="1" min="1">
-              
-              <button type="submit" name="add" id="AddToCart" class="btn btnMain">Add to cart &mdash; <span id="dynamicPrice" class="price">{{ product.price | money }}</button>
-            </form>
-                   
-          </div>
-        </div>
-
-        {% else %}
         
         <div class="container px-2">
           <div class="row">
@@ -173,7 +133,6 @@
           </div>
         </div>
 
-        {% endif %}
 
       </div>  
 {% endif %}
