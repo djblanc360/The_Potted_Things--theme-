@@ -1,0 +1,308 @@
+<div class="mobileMenuHead pt-2">
+
+
+        <img class="searchIcon" src="https://cdn.shopify.com/s/files/1/0444/2990/1988/files/search.svg?v=1601322024" alt="">
+          <div class="mobileSearchContainer">
+            <div id="pageheader">
+              <div class="util-area">
+                <form action="/search" method="get" role="search">
+                  <input class="mobileHeaderSearch" type="search" name="q" placeholder="I'm looking for..." value="{{ search.terms | escape }}">
+                  <button type="submit" class="btnSubmit" disabled>search</button>
+                </form>
+
+                </div><!-- /.util-area -->
+            </div><!-- /#pageheader -->
+          </div>
+
+  		<div class="mobileMenuCloseLink"></div>
+
+
+</div>
+<div class="mobileMenuResults">
+  <div class="container">
+    <hr class="mt-0">
+        <p class="drawerSearchHeaderTitle text-uppercase mb-3">Shop</p>
+
+        <div class="drawerSearchNoProducts">
+            <div class="row mb-4">
+                <p class="mb-0 searchNoResults"><span>No results found. Try a different search or </span><a href="/collections/all">check out all our products.</a></p>
+            </div>
+        </div>
+
+          <div class="mobileMenuResultsItem mb-4">
+            <div class="resultsProduct row">
+              <div class="col-4">
+                <a href="">
+                  <img src="" alt="">
+                </a>
+              </div>
+              <div class="col-8 d-flex align-items-center">
+                <p class="mb-0 pl-0">
+                  <a class="searchResultProdTitle" href=""></a>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="mobileMenuResultsItem mb-4">
+            <div class="resultsProduct row">
+              <div class="col-4">
+                <a href="">
+                  <img src="" alt="">
+                </a>
+              </div>
+              <div class="col-8 d-flex align-items-center">
+                <p class="mb-0 pl-0">
+                  <a class="searchResultProdTitle" href=""></a>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="mobileMenuResultsItem mb-4">
+            <div class="resultsProduct row">
+              <div class="col-4">
+                <a href="">
+                  <img src="" alt="">
+                </a>
+              </div>
+              <div class="col-8 d-flex align-items-center">
+                <p class="mb-0 pl-0">
+                  <a class="searchResultProdTitle" href=""></a>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <hr class="mt-4">
+        <p class="drawerSearchHeaderTitle text-uppercase mb-3">Journal</p>
+
+        <div class="drawerSearchNoArticles">
+            <div class="row mb-4">
+              <p class="mb-0 searchNoResults"><span>No results found. Try a different search or </span><a href="/blogs/journal">check out all our articles.</a></p>
+            </div> 
+        </div>
+
+            <ul class="list-unstyled ml-0 pl-0 mb-5">
+              <li class="list-unstyled-item mb-3">
+                <p class="mb-0">
+                  <a class="resultsArticle" href=""></a>
+                </p>
+              </li>
+              <li class="list-unstyled-item mb-3">
+                <p class="mb-0">
+                  <a class="resultsArticle" href=""></a>
+                </p>
+              </li>
+              <li class="list-unstyled-item mb-3">
+                <p class="mb-0">
+                  <a class="resultsArticle" href=""></a>
+                </p>
+              </li>
+              <li class="list-unstyled-item mb-3">
+                <p class="mb-0">
+                  <a class="resultsArticle" href=""></a>
+                </p>
+              </li>
+              <li class="list-unstyled-item mb-3">
+                <p class="mb-0">
+                  <a class="resultsArticle" href=""></a>
+                </p>
+              </li>
+            </ul>
+  </div>
+</div>
+
+<script>
+$(document).ready(function(){
+  
+/**/  
+  $('.mobileHeaderSearch').on('input',function(e) {  //'#mainSearch'
+    
+      console.log("test on input");
+    var test = $('.mobileHeaderSearch').val();
+    console.log('test: ' + test);
+    
+  let idme1 = test.toUpperCase().indexOf('ID.ME') > -1;
+  let idme2 = test.toUpperCase().indexOf('IDME') > -1;
+    
+  if(test == "") {
+	
+    //console.log('nothing');
+  /* CLEAR SEARCH */
+        $('.resultsProduct a').removeAttr('href');
+        $('.resultsProduct img').removeAttr('src');
+        $("a.searchResultProdTitle").empty();
+        $('.drawerSearchNoProducts').css("display","block");
+    
+        $(".resultsArticle").empty();
+        $('.drawerSearchNoArticles').css("display","block");
+
+    } else if (idme1 || idme2) {
+
+      console.log("has it mobile");
+      idmeMobile();
+
+    } else {
+    
+/* MULTIPLE WORDS */
+  let multiple = test.trim().indexOf(' ') != -1;
+  console.log('multiple: ' + multiple);
+      
+      if(multiple) {
+        test = test.replace(/ /g, " OR ");
+      }
+/* END MULTIPLE WORDS */
+      
+/* PRODUCTS */    
+    //var data = {"type":"product","type":"article"};
+    $.getJSON("/search/suggest.json", {
+      "q": test,
+      "resources": {
+      "type": "product",
+      "limit": 3,
+      "options": {
+          "unavailable_products": "last",
+          "fields": "title,product_type,variants.title"
+        }
+      }
+    }).done(function(response) {
+
+    var productSuggestions = response.resources.results.products;
+    //console.log(response);
+    //console.log(productSuggestions);
+
+    if (productSuggestions.length > 0) {
+
+      $('.mobileMenuResults').css("display","block");
+      $('.drawerSearchNoProducts').css("display","none");
+
+      $('.mobileMenuResults .mobileMenuResultsItem').each(function (i) { //.resultsProduct
+
+        //let listItem = $(this).closest('.mobileMenuResultsItem');
+        var productSuggestion = productSuggestions[i];
+		//console.log("product Suggestion: " + productSuggestion);
+        
+        if (productSuggestion == null){
+
+            $(this).find('a').removeAttr('href');
+            $(this).find('img').removeAttr('src');
+            $(this).find("a.searchResultProdTitle").empty();
+          	$('.mobileMenuResultsItem').removeClass('mb-4');
+
+          } else {
+
+            var productTitle = productSuggestion.title;
+            var productImageURL = productSuggestion.featured_image.url;
+            var productURL = productSuggestion.url;
+
+            console.log("productTitle: " + productTitle);
+            //console.log("productImageURL: " + productImageURL);
+            //console.log("productURL: " + productURL);
+            $(this).find('a').attr("href", productURL);
+            $(this).find('img').attr("src", productImageURL);
+            $(this).find("a.searchResultProdTitle").text(productTitle);
+
+            if(!$('.mobileMenuResultsItem').hasClass('mb-4')) {
+                $('.mobileMenuResultsItem').addClass('mb-4');
+            }
+            
+          }
+
+      });
+
+      } else {
+        console.log('no product results');
+        $('.resultsProduct a').removeAttr('href');
+        $('.resultsProduct img').removeAttr('src');
+        $("a.searchResultProdTitle").empty();
+        $('.drawerSearchNoProducts').css("display","block");
+    }
+  });
+/* END PRODUCTS */
+    
+    
+/* BLOG */    
+    $.getJSON("/search/suggest.json", {
+      "q": test,
+      "resources": {
+      "type": "article",
+      "limit": 5
+      }
+    }).done(function(response) {
+    var articleSuggestions = response.resources.results.articles;
+    //console.log(response);
+    //console.log(articleSuggestions);
+
+      if (articleSuggestions.length > 0) {
+
+        $('.drawerSearchNoArticles').css("display","none");
+        
+        $('.mobileMenuResults .resultsArticle').each(function (i) {
+
+          //$(this).empty();
+
+          
+          
+          var articleSuggestion = articleSuggestions[i];
+          
+          
+          if (articleSuggestion == null){
+            
+            $(this).empty();
+            
+          } else {
+            
+          
+
+            var articleTitle = articleSuggestion.title;
+            var articleURL = articleSuggestion.url;
+
+            console.log("articleTitle: " + articleTitle);
+            //console.log("articleURL: " + articleURL);
+
+            $(this).text(articleTitle);
+            $(this).attr("href", articleURL);
+          
+          }
+
+        });
+
+
+      } else {
+        console.log('no article results');
+        $(".resultsArticle").empty();
+        $('.drawerSearchNoArticles').css("display","block");
+      }
+
+    });
+/* END BLOG */
+    
+	}    
+
+  });
+
+});
+  
+  function idmeMobile() {
+    
+    $('.resultsProduct a').removeAttr('href');
+    $('.resultsProduct img').removeAttr('src');
+    $("a.searchResultProdTitle").empty();
+    
+    $(".resultsArticle").eq(0).text("Essential Educator");
+    $(".resultsArticle").eq(0).attr("href", "/pages/essential-educators");
+
+
+    $(".resultsArticle").eq(1).text("Healthcare Heroes");
+    $(".resultsArticle").eq(1).attr("href", "/pages/healthcare-heroes");
+
+    $(".resultsArticle").eq(2).empty();
+    $(".resultsArticle").eq(3).empty();
+    $(".resultsArticle").eq(4).empty();
+
+    $('.drawerSearchNoProducts').css("display","block");
+    $('.drawerSearchNoArticles').css("display","none");
+
+
+    
+  }
+</script>
