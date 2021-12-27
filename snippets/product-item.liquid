@@ -9,7 +9,6 @@
 		<div class="prodGridText mb-4">
 			<div class="row">
 				<div class="col-8">
-					{% render 'okendo-reviews-product-rating-summary', product: product %}
 					{% for collection in product.collections limit: 1 %}
 					    <p class="mb-0 prodGridCat">{{ collection.title }}</p>
 					{% endfor %}
