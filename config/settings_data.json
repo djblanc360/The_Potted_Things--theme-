@@ -7,6 +7,8 @@
           "desktopHero": "shopify:\/\/shop_images\/hero-plant.jpg",
           "mobileHero": "shopify:\/\/shop_images\/hero-plant.jpg",
           "header": "The Potted Things",
+          "overlayOpacityColor": "#fff",
+          "overlayOpacity": 0,
           "text": "Home of things in pots",
           "textColor": "#a3b4b1",
           "btnText": "At Home",
