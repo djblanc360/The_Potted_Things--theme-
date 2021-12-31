@@ -63,6 +63,69 @@ section {
 
 // header menu
 
+#header {
+  position: fixed;
+  width: 100%;
+  z-index: 9999998;
+	
+  #navbar {
+    background-color: transparent;
+    transition: all .3s ease-in-out;
+    
+    #desktopMainHeader {
+      display: none;
+      @media screen and (min-width:1199px) {
+        display: initial;
+        .container-fluid {
+          padding-left: 50px;
+          padding-right: 50px;
+        }
+        .desktopMainNav {
+          ul {
+            li.list-inline-item {
+              margin-right: 0 !important;
+              a {
+                letter-spacing: 0.04rem;
+                border-bottom: 2px solid transparent;
+                display: inline-block;
+                padding: 36px 24px;
+                font-size: 17px;
+                &:hover, &.hover {
+                  border-bottom-color: $drkgreen;
+                }
+                &.mainMenuHoverState {
+                  border-bottom-color: $drkgreen;
+                }
+              }
+            }
+          }
+        }
+        .deskMenuTopRight {
+          li {
+            margin-right: 0 !important;
+            a, button {
+              display: inline-block;
+              border: 0;
+              background-color: transparent;
+              padding: 20px 25px;
+              &:focus, &:active { outline: 0; }
+              img {
+                filter: invert(0%);
+                &.darkMode {
+                  filter: invert(100%);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  
+}
+
+
 .slideOutCover {
 	opacity: 0;
 	transition: all .3s ease-in-out;
