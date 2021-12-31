@@ -12,9 +12,159 @@
       <div id="desktopMainHeader">
         <div class="container-fluid">
           <div class="row">
-            
+            <div class="col-sm-9">
+              <div class="row h-100">
+                <div class="col-12 d-flex align-items-center justify-content-start">
+                  <a href="/" class="desktopLogo" title="Kindra Home">{% include 'svgLogo' %}</a>
+                  <div class="desktopMainNav">
+                    <ul class="list-inline ml-0 mb-0">
+                      <li class="list-inline-item" id="menuShop"><a class="{% if section.settings.checkbox != blank %} darkMode{% endif %}" href="/collections/all/">Shop</a></li>
+                      <li class="list-inline-item"><a class="{% if section.settings.checkbox != blank %} darkMode{% endif %}" href="/pages/hormoneassessment/">Take the Quiz</a></li>
+                      <!-- <li class="list-inline-item" id="menuComm"><a class="{% if section.settings.checkbox != blank %} darkMode{% endif %}" href="#">Join our Community</a></li> -->
+                      <li class="list-inline-item" id="menuJournal"><a class="{% if section.settings.checkbox != blank %} darkMode{% endif %}" href="/blogs/journal/">Kindra Journal</a></li>
+                      <!-- <li class="list-inline-item"><a class="{% if section.settings.checkbox != blank %} darkMode{% endif %}" href="https://kindra.referralcandy.com/">Give $10</a></li>
+                      <li class="list-inline-item"><a class="{% if section.settings.checkbox != blank %} darkMode{% endif %}" href="/pages/faq/">FAQ</a></li> -->
+                      <li class="list-inline-item" id="menuMore"><a class="{% if section.settings.checkbox != blank %} darkMode{% endif %}" href="#">More</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3 text-right">
+              <ul class="list-inline deskMenuTopRight mb-0 h-100">
+                <li class="list-inline-item h-100">
+                  <a class="d-flex align-items-center h-100" href="#" id="menuSearch">
+                    <img class="lazyload" data-src="https://cdn.shopify.com/s/files/1/0444/2990/1988/files/search.svg" alt="Search">
+                  </a>
+                </li>
+                <li class="list-inline-item h-100">
+                  <a class="d-flex align-items-center h-100" href="/account">
+                    <img class="lazyload" data-src="https://cdn.shopify.com/s/files/1/0444/2990/1988/files/account.svg" alt="Account">
+                  </a>
+                </li>
+                <li class="list-inline-item h-100">
+                  <button class="d-flex align-items-center h-100 openCart pr-0">
+                    <img class="lazyload" data-src="https://cdn.shopify.com/s/files/1/1600/4387/files/cart.svg" alt="Cart">
+                    <!-- <span class="cart-count count-header">{% if cart.item_count > 0 %}{{ cart.item_count }}{% endif %}</span> -->
+                  </button>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
+      </div>
+
+      <div id="dropdowns">
+
+        <div id="dropdownShopAll" class="dropdownMenu">
+          <div class="container"> 
+            <div class="row">
+              <div class="col-3">
+                <p class="dropdownSubTitle">Body</p>
+                <ul class="dropdownSubMenu list-unstyled pl-0 ml-0">
+                  <li class="list-unstyled-item"><a href="/collections/all/products/the-daily-vaginal-lotion-applicator">Daily Vaginal Lotion & Applicator</a></li>
+                  <li class="list-unstyled-item"><a href="/products/the-kindra-applicator">Aurora Applicator</a></li>
+                  <li class="list-unstyled-item"><a href="/collections/vaginal-dryness/products/the-daily-vaginal-lotion-applicator-xl">Vaginal Lotion XL</a></li>
+                </ul>
+              </div>
+              <div class="col-3">
+                <p class="dropdownSubTitle">Peri/menopause Supplements</p>
+                <ul class="dropdownSubMenu list-unstyled pl-0 ml-0">
+                  <li class="list-unstyled-item"><a href="/products/the-core-dietary-supplement">Core Supplement</a></li>
+                  <li class="list-unstyled-item"><a href="/products/energy-boosting-dietary-supplement">Energy Supplement</a></li>
+                  <li class="list-unstyled-item"><a href="/products/sleep-enhancing-dietary-supplement">Sleep Enhancing Supplement</a></li>
+                </ul>
+              </div>
+              <div class="col-2">
+                <a href="/products/the-toolbox"><img class="lazyload" data-src="{{ 'PDP_Image_Hero_Mobile.jpg' | file_img_url: '225x225', crop: 'center' }}" alt="The Toolbox" /></a>
+                <p class="dropdownProdTitle"><a href="">The Toolbox</a></p>
+              </div>
+              <div class="col-2">
+                <a href="/products/the-essentials-bundle"><img class="lazyload" data-src="{{ 'Essential_Bundle_w_BG_5.jpg' | file_img_url: '225x225', crop: 'center' }}" alt="The Essentials Bundle" /></a>
+                <p class="dropdownProdTitle"><a href="/products/the-essentials-bundle">Essentials Bundle</a></p>
+              </div>
+              <div class="col-2">
+                <div class="dropdownShopAllContainer d-flex align-items-center justify-content-center p-3 h-100">
+                  <p><a href="/collections/all"><em>shop all</em><br/>kindra</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="dropdownCommunity" class="dropdownMenu">
+          <div class="container">
+            <div class="row">
+              <div class="col-6 d-flex align-items-center justify-content-end">
+                <p class="mb-0">
+                  <a href="https://www.facebook.com/groups/OurKindra/" target="_blank">Join our Facebook Group</a>
+                </p>
+              </div>
+              <div class="col-6 d-flex align-items-center mainMenuLeftBorder">
+                <p class="mb-0 d-flex align-items-center">Follow us 
+                  <a class="mainMenuSocialIcon" href="https://www.instagram.com/ourkindra" target="_blank"><img class="lazyload" data-src"{{ 'social-Instagram.svg' | asset_url }}" alt="Instagram Icon" /></a>
+                  <a class="mainMenuSocialIcon" href="https://www.facebook.com/groups/OurKindra/" target="_blank"><img class="lazyload" data-src"{{ 'social-Facebook.svg' | asset_url }}" alt="Facebook Icon" /></a>
+                  <a class="mainMenuSocialIcon" href="https://www.pinterest.com/ourkindra/" target="_blank"><img class="lazyload" data-src"{{ 'social-Pinterest.svg' | asset_url }}" alt="Pinterest Icon" /></a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="dropdownJournal" class="dropdownMenu">
+          <div class="container"> 
+            <div class="row">
+              <div class="col-4">
+                <ul class="dropdownSubMenu list-unstyled pl-0 ml-0">
+                  <li class="list-unstyled-item"><a href="/blogs/journal/tagged/menopause-101">Menopause 101</a></li>
+                  <li class="list-unstyled-item"><a href="/blogs/journal/tagged/mind">Mind</a></li>
+                  <li class="list-unstyled-item"><a href="/blogs/journal/tagged/body">Body</a></li>
+                  <li class="list-unstyled-item"><a href="/blogs/journal/tagged/sex">Sex</a></li>
+                  <li class="list-unstyled-item"><a href="/blogs/journal/tagged/hormones">Hormones</a></li>
+                  <li class="list-unstyled-item"><a href="/blogs/journal/tagged/healthy-living">Healthy Living</a></li>
+                  <li class="list-unstyled-item"><a href="/blogs/journal/tagged/personal-stories">Personal Stories</a></li>
+                  <li class="list-unstyled-item"><a href="/blogs/journal/tagged/community">Community</a></li>
+                </ul>
+              </div>
+              
+              <div class="col-2">
+                <a href="#"><img class="lazyload" data-src="" alt=""></a>
+                <p class="dropdownProdTitle"><a href="#">article.title</a></p>
+              </div>
+              <div class="col-2">
+                <div class="dropdownShopAllContainer d-flex align-items-center justify-content-center p-3 h-100">
+                  <p><a href="/blogs/journal/"><em>see all</em><br/>journal</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="dropdownMore" class="dropdownMenu">
+          <div class="container">
+            <div class="row">
+              <div class="col-6 d-flex align-items-center justify-content-end">
+                <ul class="dropdownSubMenu list-unstyled pl-0 ml-0 pr-sm-5 mainMenuRightBorder"> 
+                  <li class="list-unstyled-item"><a href="/pages/about">Our Story</a></li>
+                  <li class="list-unstyled-item"><a href="/pages/subscription-lp">Subscribe & Save</a></li>
+                  <li class="list-unstyled-item"><a href="https://kindra.referralcandy.com/" target="_blank">Give $10</a></li>
+                  <li class="list-unstyled-item"><a href="/pages/faq">FAQ</a></li>
+                </ul>
+              </div>
+              <div class="col-6 d-flex align-items-center">
+                <div class="menuMoreImgContainer pl-sm-4">
+                  <a href="/products/the-essentials-bundle"><img class="lazyload" data-src="{{ 'EssentialBundle.png' | file_img_url: '225x225', crop: 'center' }}" alt="Essentials for Essentials" /></a>
+                  <p class="dropdownProdTitle mb-0"><a href="/products/the-essentials-bundle">Essentials for Essentials</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="dropdownSearch" class="dropdownMenu">
+			   {% include 'header-search' %}
+        </div>
+
       </div>
 
     </div>
