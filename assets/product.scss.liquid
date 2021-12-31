@@ -1,66 +1,75 @@
-// Put your styles in this file.
-// Shopify will compile SCSS/SASS on each deploy.
-// Note: "@import" rules aren’t supported.
 
-$drkblue: #627E92;
-$ltblue: #E3ECF2;
+#header {
 
-.product {
-	main {
-		padding-top: 80px;
-		#pdp-more-collection {
-			background-size: cover;
-			background-position: center;
-			position: relative;
-			.container {
-				position: relative;
-				z-index: 2;
-				h2, .more {
-					color: #fff;
-				}
-				.shopCollItem {
-					background-color: #fff;
-					padding: 15px;
-					margin: 7px;
+	#productNav {
+		background-color: #ffffff;
+
+	}
+	&.sticky {
+		#productNav {
+			backdrop-filter: blur(8px);
+  		background-color: rgba(255,255,255,0.6);
+		}
+	}
+
+	#mobileAddToCart {
+      bottom: 0;
+		a, button {
+			border: 0;
+			display: inline-block;
+			background-color: transparent;
+			img.mobileProductHeaderIcon {
+				filter: invert(100%);
+			}
+			&:focus, &:active { outline: 0; }
+		}
+		@media screen and (min-width:768px) {
+			display: none;
+		}
+	}
+  #mobileAddToCart {
+		a, button {
+			border: 0;
+			display: inline-block;
+			background-color: transparent;
+			&:focus, &:active { outline: 0; }
+		}
+		@media screen and (min-width:768px) {
+			display: none;
+		}
+	}
+	#desktopProductHeader {
+		display: none;
+		@media screen and (min-width:1201px) {
+			display: initial;
+			.desktopProductNav {
+				ul {
+					li {
+						label {
+						    letter-spacing: 0.04rem;
+						    border-bottom: 2px solid transparent;
+						    display: inline-block;
+						    &:hover {
+						    	border-bottom-color: $purple;
+						    }
+						}
+					}
 				}
 			}
-			.cover {
-				position: absolute;
-				top: 0; right: 0; bottom: 0; left: 0;
-				background-color: rgba(0,0,0,0.4);
-				z-index: 1;
+			.deskMenuTopRight {
+				li {
+					a, input, button {
+						display: inline-block;
+						border: 0;
+						background-color: transparent;
+						&:focus, &:active { outline: 0; }
+						img {
+							filter: invert(100%);
+						}
+					}
+				}
 			}
 		}
-      
-      .breadcrumbs{
-        text-transform: uppercase;
-        font-size: 11px;
-        font-weight: 300;
-        a{
-          color: #000;
-          font-size: 11px;
-          font-weight: 300;
-        }
-      }
 	}
-  	
-  .favoriteBtn{
-    margin-bottom: 45px;
-    i{
-      font-size: 24px;
-      &:hover{
-        cursor: pointer;
-      }
-    }
-  }
-  
- .quickShopVariantImg{
-   &:hover{
-     cursor: pointer;
-   }
-   
-   &.active{
-     border: 1px solid #000;
-   }
- }
+
 }
