@@ -67,21 +67,42 @@ section {
   position: fixed;
   width: 100%;
   z-index: 9999998;
-	
-  #navbar {
+  #navbar { 
     background-color: transparent;
     transition: all .3s ease-in-out;
-    
-    #desktopMainHeader {
-      display: none;
-      @media screen and (min-width:1199px) {
-        display: initial;
-        .container-fluid {
-          padding-left: 50px;
-          padding-right: 50px;
+    a {
+      color: #ffffff;
+      &:hover {
+        text-decoration: none;
+      } 
+      &.darkMode {
+        color: #262626;
+      }
+    }
+    .desktopLogo svg {
+      /* 			filter: invert(90%) brightness(200%) contrast(100%); */
+      width: 180px;
+      padding-right: 25px;
+      g {
+        fill: #fff;
+        &.darkMode {
+          /* 				filter: invert(90%) brightness(40%) contrast(100%); */
+          fill: #262626;
         }
-        
-        
+      }
+    }
+    @media screen and (max-width:767px) {
+      transition: all .3s ease-in-out;
+      top: 0;
+      position: relative;
+      &.toggleShowHeader {
+        top: 0;
+      }
+      &.toggleHideHeader {
+        top: -100px;
+      }
+    }
+  }
   #desktopMainHeader {
     display: none;
     @media screen and (min-width:1199px) {
@@ -248,13 +269,7 @@ section {
       }
     }
   }
-        
-        
-      }
-    }
-  }
-  
-  
+
 }
 
 
