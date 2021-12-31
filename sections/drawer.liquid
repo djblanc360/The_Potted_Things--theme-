@@ -1,3 +1,79 @@
+<style>
+
+:root {
+  --header-height: 20px;
+}
+  .sideCartExpandable {
+    height: calc(max(100% - var(--header-height), 100% - 60px));
+    max-height: calc(max(100% - var(--header-height), 100% - 60px));
+    width: 100%;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  
+</style>
+
+<!--go cart drawer-->
+<div class="go-cart__drawer js-go-cart-drawer">
+
+<div class="sideCartWrapper">
+  
+<!-- CART HEADER -->
+        <div class="go-cart-drawer__header">
+          
+          <div class="go-cart-drawer__header-top">
+            <div class="drawer__title">Your Cart</div>
+            <div class="drawer__cart-icon">
+              <i class="fas fa-shopping-cart"></i><span class="js-go-cart-counter">{{ cart.item_count }}</span>
+            </div>            
+            <div class="js-go-cart-drawer-close js-drawer-close">
+
+              <button type="button" class="icon-fallback-text">
+                <!-- <span class="icon icon-x" aria-hidden="true"></span>-->
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+          
+          <div class="drawer__promo"><a>Save 10% When You Sign Up For Our Newsletter</a></div>
+        </div>
+<!-- END CART HEADER -->  
+  
+<div class="sideCartExpandable">  
+  
+    <div class="go-cart-drawer">
+
+
+
+<!-- CART BODY -->
+        <div class="go-cart-drawer__content js-go-cart-drawer-content">
+
+        </div>
+<!-- END CART BODY -->
+
+    </div>
+
+<!-- CART FOOTER -->
+     <div class="drawer__footer">
+
+     </div>
+<!-- END CART FOOTER -->
+  
+</div><!-- END sideCartExpandable -->  
+  
+</div><!-- END sideCartWrapper -->    
+
+</div>
+<!--end go cart drawer-->
+
+<!--go cart overlay-->
+<div class="go-cart__overlay js-go-cart-overlay">
+</div>
+<!--end go cart overlay-->
+
+
 {% schema %}
   {
     "name": "Section name",
