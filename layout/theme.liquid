@@ -23,6 +23,7 @@
 
   {{ 'general.scss.css' | asset_url | stylesheet_tag }}
   {{ 'slick.css' | asset_url | stylesheet_tag }}
+  {{ 'drawer.scss.css' | asset_url | stylesheet_tag }}
   
   {% if template == 'index' %}
     {{ 'index.scss.css' | asset_url | stylesheet_tag }}
@@ -47,7 +48,11 @@
 
   {% section 'theme-header' %}
   
+  {% section 'drawer' %}
+  
   {{ content_for_layout }}
+  
+  {% include 'ajaxify-cart' %}
 
   {{ 'general.js' | asset_url | script_tag }}
   {{ 'slick.min.js' | asset_url | script_tag }}
