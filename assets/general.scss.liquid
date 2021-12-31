@@ -80,44 +80,176 @@ section {
           padding-left: 50px;
           padding-right: 50px;
         }
-        .desktopMainNav {
-          ul {
-            li.list-inline-item {
-              margin-right: 0 !important;
-              a {
-                letter-spacing: 0.04rem;
-                border-bottom: 2px solid transparent;
-                display: inline-block;
-                padding: 36px 24px;
-                font-size: 17px;
-                &:hover, &.hover {
-                  border-bottom-color: $drkgreen;
-                }
-                &.mainMenuHoverState {
-                  border-bottom-color: $drkgreen;
-                }
-              }
-            }
-          }
-        }
-        .deskMenuTopRight {
-          li {
+        
+        
+  #desktopMainHeader {
+    display: none;
+    @media screen and (min-width:1199px) {
+      display: initial;
+      .container-fluid {
+        padding-left: 50px;
+        padding-right: 50px;
+      }
+      .desktopMainNav {
+        ul {
+          li.list-inline-item {
             margin-right: 0 !important;
-            a, button {
+            a {
+              letter-spacing: 0.04rem;
+              border-bottom: 2px solid transparent;
               display: inline-block;
-              border: 0;
-              background-color: transparent;
-              padding: 20px 25px;
-              &:focus, &:active { outline: 0; }
-              img {
-                filter: invert(0%);
-                &.darkMode {
-                  filter: invert(100%);
-                }
+              padding: 36px 24px;
+              font-size: 17px;
+              &:hover, &.hover {
+                border-bottom-color: $purple;
+              }
+              &.mainMenuHoverState {
+                border-bottom-color: $purple;
               }
             }
           }
         }
+      }
+      .deskMenuTopRight {
+        li {
+          margin-right: 0 !important;
+          a, button {
+            display: inline-block;
+            border: 0;
+            background-color: transparent;
+            padding: 20px 25px;
+            &:focus, &:active { outline: 0; }
+            img {
+              filter: invert(0%);
+              &.darkMode {
+                filter: invert(100%);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  &.sticky, &:hover, &.hover {
+    #navbar {
+      backdrop-filter: blur(8px);
+      background-color: rgba(255,255,255,0.6);
+      &:hover { background-color: #F7F6F5; }
+      a {
+        color: #212121;
+      }
+      .desktopLogo svg g {
+        fill: #262626;
+      }
+      .deskMenuTopRight {
+        li {
+          a, button {
+            img {
+              filter: invert(100%);
+            }
+          }
+        }
+      }
+    }
+    #mobileMainHeader, #mobileProductHeader {
+      a.mobileMainHeaderLogo img { filter: invert(90%) brightness(40%) contrast(100%); }
+      button .mobileMainHeaderIcon { filter: invert(100%); }
+    }
+  }
+  &.hover #navbar { background-color: #F7F6F5; }
+  #dropdowns {
+    @media screen and (min-width: 1200px) {
+      .container {
+        max-width: 1530px;
+      }
+    }
+    .dropdownMenu {
+      position: relative;
+      margin-top: -4px;
+      display: none;
+      padding-top: 35px;
+      padding-bottom: 40px;
+      &.displayDropdown { 
+        display: block;
+      }
+      .dropdownSubTitle {
+        font-weight: 500;
+        font-size: 13px;
+        text-transform: uppercase;
+        margin-bottom: 25px;
+        letter-spacing: 2.47px;
+      }
+      .dropdownSubMenu li {
+        margin-bottom: 17px;
+        a { 
+          font-weight: 600; 
+          color: #262626;
+          font-size: 16px;
+        }
+      }
+      .dropdownProdTitle {
+        font-size: 16px;
+        font-weight: 600;
+        padding-top: 1rem;
+      }
+      .dropdownShopAllContainer {
+        p {
+          margin-bottom: 0;
+          margin-top: -3rem;
+          a {
+            display: inline-block;
+            border-left: 2px solid #F0ECE9;
+            font-family: 'Cormorant', Times, serif;
+            font-size: 38px;
+            line-height: 1.25;
+            padding: 1.25rem 0 1.25rem 1.25rem;
+          }
+        }
+      }
+      .mainMenuLeftBorder {
+        border-left: 2px solid #f2f2f2;
+      }
+      .mainMenuRightBorder {
+        border-right: 2px solid #f2f2f2; 
+      }
+    }
+    #dropdownCommunity {
+      p { 
+        font-weight: 600;
+        .mainMenuSocialIcon {
+          display: inline-block;
+          padding-left: 0.75rem;
+          padding-right: 0.75rem;
+          &:first-child {
+            padding-left: 1rem;
+          }
+        }
+      }
+    }
+    #dropdownSearch {
+      @media screen and (max-width:1199px) { display: none; }
+      @media screen and (min-width:1200px) {
+        .container-fluid {
+          padding-left: 40px;
+        }
+      }
+      hr { margin-top: -0; }
+      .dropdownMenu {
+
+        &.displayDropdown {
+          padding-bottom: 0px;
+
+        }
+      }
+    }
+    #dropdownJournal {
+      .dropdownShopAllContainer p {
+        margin-top: -8rem;
+      }
+    }
+  }
+        
+        
       }
     }
   }
