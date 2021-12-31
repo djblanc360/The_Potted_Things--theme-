@@ -123,10 +123,10 @@ section {
               padding: 36px 24px;
               font-size: 17px;
               &:hover, &.hover {
-                border-bottom-color: $drkgreen;
+                border-bottom-color: $grnwhite;
               }
               &.mainMenuHoverState {
-                border-bottom-color: $drkgreen;
+                border-bottom-color: $grnwhite;
               }
             }
           }
@@ -156,7 +156,7 @@ section {
     #navbar {
       backdrop-filter: blur(8px);
       background-color: rgba(255,255,255,0.6);
-      &:hover { background-color: #F7F6F5; }
+      &:hover { background-color: $drkgreen; }
       a {
         color: #212121;
       }
@@ -178,7 +178,7 @@ section {
       button .mobileMainHeaderIcon { filter: invert(100%); }
     }
   }
-  &.hover #navbar { background-color: #F7F6F5; }
+  &.hover #navbar { background-color: $drkgreen; }
   #dropdowns {
     @media screen and (min-width: 1200px) {
       .container {
