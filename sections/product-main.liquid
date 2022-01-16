@@ -43,11 +43,7 @@
             
             {% for image in product.images %}
               <div class="product-photo">
-                {% if template == "product.alternate" %}
-                	<img src="{{ image.src | img_url: '900x900', crop: "center"  }}" alt="{{ image.alt | escape }}">
-                {% else %}
-                	<img class="lazyload" data-src="{{ image.src | img_url: 'master' }}" alt="{{ image.alt | escape }}">
-                {% endif %}
+                <img class="lazyload" src="{{ image.src | img_url: 'master' }}" alt="{{ image.alt | escape }}">
               </div>
             {% endfor %}
             
