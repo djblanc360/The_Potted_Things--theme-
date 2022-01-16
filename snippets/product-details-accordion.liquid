@@ -1,0 +1,306 @@
+
+<div class="prodDetailsAccordionContainer">
+
+  <div id="prodDetailsAccordion" class="prodAccordion">
+    {% if product.metafields.accentuate.nutrition_facts_label_image %}
+    <div class="card">
+      <div class="card-header" id="NutritionFacts">
+        <h5 class="mb-0">
+          <button class="collapsed" data-toggle="collapse" data-target="#collapseNutritionFacts" aria-expanded="true" aria-controls="collapseNutritionFacts">
+            Supplement Facts <div class="collapseIcon">
+                        <svg class="minus" width="15" height="15" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.22 2"><defs><style>.cls-1{fill:none;stroke:#4a2338;stroke-width:1.8px;}</style></defs><g id="icons_minus_grey-900" data-name="icons minus grey-900"><g id="Group"><path id="Path" class="cls-1" d="M1.15,8.63c.83,0,1.47,0,1.92,0,5.69.39,10.21,0,13.27.08" transform="translate(-1.15 -7.73)"/></g></g></svg>
+                        <svg class="plus" width="15" height="15" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.22 15.22"><defs><style>.cls-1{fill:none;stroke:#4a2338;stroke-width:1.8px;}</style></defs><g id="icons_plus_grey-900" data-name="icons plus grey-900"><g id="Group"><path id="Path" class="cls-1" d="M8.78,1c0,.83,0,1.47,0,1.92.22,5.74,0,10.21.08,13.26" transform="translate(-1.15 -0.99)"/><path id="Path-2" data-name="Path" class="cls-1" d="M1.15,8.63c.83,0,1.47,0,1.92,0,5.69.39,10.21,0,13.27.08" transform="translate(-1.15 -0.99)"/></g></g></svg>   
+                      </div>
+          </button>
+        </h5>
+      </div>
+      <div id="collapseNutritionFacts" class="collapse" aria-labelledby="NutritionFacts" data-parent="#prodDetailsAccordion">
+        <div class="card-body">
+         {% assign img = product.metafields.accentuate.nutrition_facts_label_image | first %}
+         <img data-src="{{ img.cloudinary_src }}" alt="{{ img.alt }}" class="mb-1 mx-auto lazyload d-none d-sm-block" />
+         {% assign img = product.metafields.accentuate.nutrition_facts_label_mobile | first %}
+         <img data-src="{{ img.cloudinary_src }}" alt="{{ img.alt }}" class="mb-1 mx-auto lazyload d-sm-none" />
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    
+    {% if template != "product.alternate" %}
+    
+      {% if product.metafields.accentuate.ingredients_accordion_text %}
+      <div class="card">
+        <div class="card-header" id="Ingredients">
+          <h5 class="mb-0">
+            <button class="collapsed" data-toggle="collapse" data-target="#collapseIngredients" aria-expanded="true" aria-controls="collapseIngredients">
+              Ingredients <div class="collapseIcon">
+                          <svg class="minus" width="15" height="15" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.22 2"><defs><style>.cls-1{fill:none;stroke:#4a2338;stroke-width:1.8px;}</style></defs><g id="icons_minus_grey-900" data-name="icons minus grey-900"><g id="Group"><path id="Path" class="cls-1" d="M1.15,8.63c.83,0,1.47,0,1.92,0,5.69.39,10.21,0,13.27.08" transform="translate(-1.15 -7.73)"/></g></g></svg>
+                          <svg class="plus" width="15" height="15" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.22 15.22"><defs><style>.cls-1{fill:none;stroke:#4a2338;stroke-width:1.8px;}</style></defs><g id="icons_plus_grey-900" data-name="icons plus grey-900"><g id="Group"><path id="Path" class="cls-1" d="M8.78,1c0,.83,0,1.47,0,1.92.22,5.74,0,10.21.08,13.26" transform="translate(-1.15 -0.99)"/><path id="Path-2" data-name="Path" class="cls-1" d="M1.15,8.63c.83,0,1.47,0,1.92,0,5.69.39,10.21,0,13.27.08" transform="translate(-1.15 -0.99)"/></g></g></svg>   
+                        </div>
+            </button>
+          </h5>
+        </div>
+        <div id="collapseIngredients" class="collapse" aria-labelledby="Ingredients" data-parent="#prodDetailsAccordion">
+          <div class="card-body">
+            <p>{{ product.metafields.accentuate.ingredients_accordion_text }}</p>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      {% if product.metafields.accentuate.benefits_accordion_text %}
+      <div class="card">
+        <div class="card-header" id="Benefits">
+          <h5 class="mb-0">
+            <button class="collapsed" data-toggle="collapse" data-target="#collapseBenefits" aria-expanded="true" aria-controls="collapseBenefits">
+              Benefits <div class="collapseIcon">
+                          <svg class="minus" width="15" height="15" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.22 2"><defs><style>.cls-1{fill:none;stroke:#4a2338;stroke-width:1.8px;}</style></defs><g id="icons_minus_grey-900" data-name="icons minus grey-900"><g id="Group"><path id="Path" class="cls-1" d="M1.15,8.63c.83,0,1.47,0,1.92,0,5.69.39,10.21,0,13.27.08" transform="translate(-1.15 -7.73)"/></g></g></svg>
+                          <svg class="plus" width="15" height="15" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.22 15.22"><defs><style>.cls-1{fill:none;stroke:#4a2338;stroke-width:1.8px;}</style></defs><g id="icons_plus_grey-900" data-name="icons plus grey-900"><g id="Group"><path id="Path" class="cls-1" d="M8.78,1c0,.83,0,1.47,0,1.92.22,5.74,0,10.21.08,13.26" transform="translate(-1.15 -0.99)"/><path id="Path-2" data-name="Path" class="cls-1" d="M1.15,8.63c.83,0,1.47,0,1.92,0,5.69.39,10.21,0,13.27.08" transform="translate(-1.15 -0.99)"/></g></g></svg>   
+                        </div>
+            </button>
+          </h5>
+        </div>
+        <div id="collapseBenefits" class="collapse" aria-labelledby="Benefits" data-parent="#prodDetailsAccordion">
+          <div class="card-body">
+            <p>{{ product.metafields.accentuate.benefits_accordion_text }}</p>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    
+    {% else %}
+    
+      {% if product.metafields.accentuate.whats_inside_accordion_text %}
+        <div class="card">
+          <div class="card-header" id="Ingredients">
+            <h5 class="mb-0">
+              <button class="collapsed" data-toggle="collapse" data-target="#collapseIngredients" aria-expanded="true" aria-controls="collapseIngredients">
+                What's Inside <div class="collapseIcon">
+                            <svg class="minus" width="15" height="15" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.22 2"><defs><style>.cls-1{fill:none;stroke:#4a2338;stroke-width:1.8px;}</style></defs><g id="icons_minus_grey-900" data-name="icons minus grey-900"><g id="Group"><path id="Path" class="cls-1" d="M1.15,8.63c.83,0,1.47,0,1.92,0,5.69.39,10.21,0,13.27.08" transform="translate(-1.15 -7.73)"/></g></g></svg>
+                            <svg class="plus" width="15" height="15" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.22 15.22"><defs><style>.cls-1{fill:none;stroke:#4a2338;stroke-width:1.8px;}</style></defs><g id="icons_plus_grey-900" data-name="icons plus grey-900"><g id="Group"><path id="Path" class="cls-1" d="M8.78,1c0,.83,0,1.47,0,1.92.22,5.74,0,10.21.08,13.26" transform="translate(-1.15 -0.99)"/><path id="Path-2" data-name="Path" class="cls-1" d="M1.15,8.63c.83,0,1.47,0,1.92,0,5.69.39,10.21,0,13.27.08" transform="translate(-1.15 -0.99)"/></g></g></svg>   
+                          </div>
+              </button>
+            </h5>
+          </div>
+          <div id="collapseIngredients" class="collapse" aria-labelledby="Ingredients" data-parent="#prodDetailsAccordion">
+            <div class="card-body">
+              {{ product.metafields.accentuate.whats_inside_accordion_text }}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    
+    {% endif %}
+    
+    
+
+    
+    
+    {% if product.metafields.accentuate.symptom_addressed_title %}
+    <div class="card">
+      <div class="card-header" id="SymtomsAddressed">
+        <h5 class="mb-0">
+          <button class="collapsed" data-toggle="collapse" data-target="#collapseSymtoms" aria-expanded="true" aria-controls="collapseSymtoms">
+            Symptoms Addressed <div class="collapseIcon">
+                        <svg class="minus" width="15" height="15" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.22 2"><defs><style>.cls-1{fill:none;stroke:#4a2338;stroke-width:1.8px;}</style></defs><g id="icons_minus_grey-900" data-name="icons minus grey-900"><g id="Group"><path id="Path" class="cls-1" d="M1.15,8.63c.83,0,1.47,0,1.92,0,5.69.39,10.21,0,13.27.08" transform="translate(-1.15 -7.73)"/></g></g></svg>
+                        <svg class="plus" width="15" height="15" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.22 15.22"><defs><style>.cls-1{fill:none;stroke:#4a2338;stroke-width:1.8px;}</style></defs><g id="icons_plus_grey-900" data-name="icons plus grey-900"><g id="Group"><path id="Path" class="cls-1" d="M8.78,1c0,.83,0,1.47,0,1.92.22,5.74,0,10.21.08,13.26" transform="translate(-1.15 -0.99)"/><path id="Path-2" data-name="Path" class="cls-1" d="M1.15,8.63c.83,0,1.47,0,1.92,0,5.69.39,10.21,0,13.27.08" transform="translate(-1.15 -0.99)"/></g></g></svg>   
+                      </div>
+          </button>
+        </h5>
+      </div>
+      <div id="collapseSymtoms" class="collapse" aria-labelledby="SymtomsAddressed" data-parent="#prodDetailsAccordion">
+        <div class="card-body">
+         <div class="row">
+           {% for value in product.metafields.accentuate.symptom_addressed_title %}
+              <div class="col-4 col-sm-3">
+                {% assign img = product.metafields.accentuate.symptom_addressed_image[forloop.index0] | first %} 
+                <div class="symptomImgContainer">
+                <img data-src="{{ img.cloudinary_src | append: 'w_50,q_100' }}" alt="{{ img.alt }}" class="mb-1 mx-auto lazyload" />
+                </div>
+                <p class="text-center">{{ value }}</p>
+              </div>
+           {% endfor %}
+<!--               <div class="col-4 col-sm-3">
+                <div class="symptomImgContainer">
+                <img src="https://cdn.shopify.com/s/files/1/1600/4387/files/icon_low_sex_drive_aedff677-c365-40fd-8361-6336cebeed00.svg?v=1615226520" alt="{{ img.alt }}" class="mb-1 mx-auto lazyload" />
+                </div>
+                <p class="text-center">{{ value }}</p>
+              </div> -->
+         </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% if product.metafields.accentuate.how_to_use %}
+    <div class="card">
+      <div class="card-header" id="HowToUse">
+        <h5 class="mb-0">
+          <button class="collapsed" data-toggle="collapse" data-target="#collapseHowToUse" aria-expanded="false" aria-controls="collapseHowToUse">
+            How To Use <div class="collapseIcon">
+                        <svg class="minus" width="15" height="15" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.22 2"><defs><style>.cls-1{fill:none;stroke:#4a2338;stroke-width:1.8px;}</style></defs><g id="icons_minus_grey-900" data-name="icons minus grey-900"><g id="Group"><path id="Path" class="cls-1" d="M1.15,8.63c.83,0,1.47,0,1.92,0,5.69.39,10.21,0,13.27.08" transform="translate(-1.15 -7.73)"/></g></g></svg>
+                        <svg class="plus" width="15" height="15" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.22 15.22"><defs><style>.cls-1{fill:none;stroke:#4a2338;stroke-width:1.8px;}</style></defs><g id="icons_plus_grey-900" data-name="icons plus grey-900"><g id="Group"><path id="Path" class="cls-1" d="M8.78,1c0,.83,0,1.47,0,1.92.22,5.74,0,10.21.08,13.26" transform="translate(-1.15 -0.99)"/><path id="Path-2" data-name="Path" class="cls-1" d="M1.15,8.63c.83,0,1.47,0,1.92,0,5.69.39,10.21,0,13.27.08" transform="translate(-1.15 -0.99)"/></g></g></svg>   
+                      </div>
+          </button>
+        </h5>
+      </div>
+      <div id="collapseHowToUse" class="collapse" aria-labelledby="HowToUse" data-parent="#prodDetailsAccordion">
+        <div class="card-body" class="pt-0">
+          {% if product.id == 4713952444496 or product.id == 4346314096720 or product.id == 6619529248848%}
+          <div class = "howToUseApplicator">
+            <div class = "row mb-3">
+              <div class = "col-1">
+                <h6 class = 'applicatorStepNum'>1.</h6>
+              </div>
+              <div class = "col-3 order-3 order-sm-2 d-flex align-items-center justify-content-center pl-0 px-sm-0">
+                <img data-src="https://cdn.shopify.com/s/files/1/1600/4387/files/Step_1_78b03144-f0f3-4167-ac84-62aaf93a6bf6.png?v=1639534914" class="applicatorImg lazyload" alt="">
+              </div>
+
+              <div class = "pt-3 pt-sm-0 col-8 order-2 order-sm-3">
+                <h6 class = "applicatorStepTitle" >Apply the Lotion</h6>
+                <p>
+                  Wash your hands and pump desired amount onto a clean, dry finger. 2 to 4 pumps usually does the trick. Super dry or sensitive? Start with 1 pump and build up to 2+ over 7 to 14 days. Explore and feel what works for your body.
+                </p>
+              </div>
+            </div>
+            <div class = "row mb-3">
+              <div class = "col-1">
+                <h6 class = 'applicatorStepNum'>2.</h6>
+              </div>
+              <div class = "col-3 order-3 order-sm-2 d-flex align-items-center justify-content-center pl-0 px-sm-0">
+                <img id="secondApplicator" data-src="https://cdn.shopify.com/s/files/1/1600/4387/files/Step_2_35d3705b-dd57-46a8-856b-9e39964e62ab.png?v=1639534914" class="applicatorImg lazyload" alt="">
+              </div>
+
+              <div class = "pt-3 pt-sm-0 col-8 order-2 order-sm-3">
+                <h6 class = "applicatorStepTitle" >Insert up to One Inch</h6>
+                <p>
+                  Insert finger only 1 inch or less into the vaginal opening known as the introitus, if you are experiencing discomfort there.
+                </p>
+              </div>
+            </div>
+            <div class = "row mb-3">
+              <div class = "col-1">
+                <h6 class = 'applicatorStepNum'>3.</h6>
+              </div>
+              <div class = "col-3 order-3 order-sm-2 d-flex align-items-center justify-content-center pl-0 px-sm-0">
+                <img id = "thirdApplicator" data-src="https://cdn.shopify.com/s/files/1/1600/4387/files/Step_3_edd77e0b-8bd7-467c-8fd5-6dd8d65a0ad7.png?v=1639534914" class="applicatorImg lazyload" alt="">
+              </div>
+
+              <div class = "pt-3 pt-sm-0 col-8 order-2 order-sm-3">
+                <h6 class = "applicatorStepTitle" >Apply Outside as Needed</h6>
+                <p>
+                  Gently apply the lotion to the external vaginal area known as the vulva. Add extra pumps if needed.
+                </p>
+              </div>
+            </div>
+            <div class = "row mb-3">
+              <div class = "col-1">
+                <h6 class = 'applicatorStepNum'>4.</h6>
+              </div>
+              <div class = "col-3 order-3 order-sm-2 d-flex align-items-center justify-content-center pl-0 px-sm-0">
+                <img data-src="https://cdn.shopify.com/s/files/1/1600/4387/files/Step_4_875fdba8-89d5-45d2-b776-21403eac330b.png?v=1639534914" class="applicatorImg lazyload" alt="">
+              </div>
+
+              <div class = "pt-3 pt-sm-0 col-8 order-2 order-sm-3">
+                <h6 class = "applicatorStepTitle" >Wash & Reapply as Needed</h6>
+                <p>
+                   Wash your hands after each use. Reapply daily or as often as you need.
+                </p>
+              </div>
+            </div>
+          </div>
+          {% else %}
+        	{{ product.metafields.accentuate.how_to_use }}
+          {% endif %}
+          
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% if product.id == 4346314096720 %}
+    <div class="card">
+      <div class="card-header" id="WhatToExpect">
+        <h5 class="mb-0">
+          <button class="collapsed" data-toggle="collapse" data-target="#collapseWhatToExpect" aria-expanded="false" aria-controls="collapseWhatToExpect">
+            What To Expect <div class="collapseIcon">
+                        <svg class="minus" width="15" height="15" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.22 2"><defs><style>.cls-1{fill:none;stroke:#4a2338;stroke-width:1.8px;}</style></defs><g id="icons_minus_grey-900" data-name="icons minus grey-900"><g id="Group"><path id="Path" class="cls-1" d="M1.15,8.63c.83,0,1.47,0,1.92,0,5.69.39,10.21,0,13.27.08" transform="translate(-1.15 -7.73)"/></g></g></svg>
+                        <svg class="plus" width="15" height="15" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.22 15.22"><defs><style>.cls-1{fill:none;stroke:#4a2338;stroke-width:1.8px;}</style></defs><g id="icons_plus_grey-900" data-name="icons plus grey-900"><g id="Group"><path id="Path" class="cls-1" d="M8.78,1c0,.83,0,1.47,0,1.92.22,5.74,0,10.21.08,13.26" transform="translate(-1.15 -0.99)"/><path id="Path-2" data-name="Path" class="cls-1" d="M1.15,8.63c.83,0,1.47,0,1.92,0,5.69.39,10.21,0,13.27.08" transform="translate(-1.15 -0.99)"/></g></g></svg>   
+                      </div>
+          </button>
+        </h5>
+      </div>
+      <div id="collapseWhatToExpect" class="collapse" aria-labelledby="WhatToExpect" data-parent="#prodDetailsAccordion">
+        <div class="card-body" class="pt-0">
+        	{% for value in product.metafields.accentuate.what_to_expect_header %}
+                <div class = "whatToExpect {% if forloop.last  == false %}pb-3{% endif %}">
+                  <h6 class = "whatToExpectHeader">{{ value }} </h6>
+                  <p class = "whatToExpectDesc">{{product.metafields.accentuate.what_to_expect_description[forloop.index0]}}</p>
+                </div>
+          	{% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% if product.metafields.accentuate.clinical_study %}
+    <div class="card">
+      <div class="card-header" id="ClinicalStudy">
+        <h5 class="mb-0">
+          <button class="collapsed" data-toggle="collapse" data-target="#collapseClinicalStudy" aria-expanded="false" aria-controls="collapseClinicalStudy">
+            Clinical Study <div class="collapseIcon">
+                        <svg class="minus" width="15" height="15" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.22 2"><defs><style>.cls-1{fill:none;stroke:#4a2338;stroke-width:1.8px;}</style></defs><g id="icons_minus_grey-900" data-name="icons minus grey-900"><g id="Group"><path id="Path" class="cls-1" d="M1.15,8.63c.83,0,1.47,0,1.92,0,5.69.39,10.21,0,13.27.08" transform="translate(-1.15 -7.73)"/></g></g></svg>
+                        <svg class="plus" width="15" height="15" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.22 15.22"><defs><style>.cls-1{fill:none;stroke:#4a2338;stroke-width:1.8px;}</style></defs><g id="icons_plus_grey-900" data-name="icons plus grey-900"><g id="Group"><path id="Path" class="cls-1" d="M8.78,1c0,.83,0,1.47,0,1.92.22,5.74,0,10.21.08,13.26" transform="translate(-1.15 -0.99)"/><path id="Path-2" data-name="Path" class="cls-1" d="M1.15,8.63c.83,0,1.47,0,1.92,0,5.69.39,10.21,0,13.27.08" transform="translate(-1.15 -0.99)"/></g></g></svg>   
+                      </div>
+          </button>
+        </h5>
+      </div>
+      <div id="collapseClinicalStudy" class="collapse" aria-labelledby="ClinicalStudy" data-parent="#prodDetailsAccordion">
+        <div class="card-body">
+          {{ product.metafields.accentuate.clinical_study }} 
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% if product.metafields.accentuate.review_highlights  %}
+    <div class="card">
+      <div class="card-header" id="ReviewHighlights">
+        <h5 class="mb-0">
+          <button class="collapsed" data-toggle="collapse" data-target="#collapseReviewHighlights" aria-expanded="false" aria-controls="collapseReviewHighlights">
+            Review Highlights <div class="collapseIcon">
+                        <svg class="minus" width="15" height="15" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.22 2"><defs><style>.cls-1{fill:none;stroke:#4a2338;stroke-width:1.8px;}</style></defs><g id="icons_minus_grey-900" data-name="icons minus grey-900"><g id="Group"><path id="Path" class="cls-1" d="M1.15,8.63c.83,0,1.47,0,1.92,0,5.69.39,10.21,0,13.27.08" transform="translate(-1.15 -7.73)"/></g></g></svg>
+                        <svg class="plus" width="15" height="15" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.22 15.22"><defs><style>.cls-1{fill:none;stroke:#4a2338;stroke-width:1.8px;}</style></defs><g id="icons_plus_grey-900" data-name="icons plus grey-900"><g id="Group"><path id="Path" class="cls-1" d="M8.78,1c0,.83,0,1.47,0,1.92.22,5.74,0,10.21.08,13.26" transform="translate(-1.15 -0.99)"/><path id="Path-2" data-name="Path" class="cls-1" d="M1.15,8.63c.83,0,1.47,0,1.92,0,5.69.39,10.21,0,13.27.08" transform="translate(-1.15 -0.99)"/></g></g></svg>   
+                      </div>
+          </button>
+        </h5>
+      </div>
+      <div id="collapseReviewHighlights" class="collapse show" aria-labelledby="ReviewHighlights" data-parent="#prodDetailsAccordion">
+        <div class="card-body">
+          <!-- REVIEW LOOP -->
+ 
+            {{ product.metafields.accentuate.review_highlights }}
+            <p class="seeAllReviews"><a href="#prodReviews">See All Reviews</a></p>
+          <!-- END REVIEW LOOP -->
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    
+    {% if product.metafields.accentuate.why_it_works_accordion_text %}
+        <div class="card">
+          <div class="card-header" id="WhyItWorks">
+            <h5 class="mb-0">
+              <button class="collapsed" data-toggle="collapse" data-target="#collapseWhyItWorks" aria-expanded="true" aria-controls="collapseWhyItWorks">
+                Why It Works <div class="collapseIcon">
+                            <svg class="minus" width="15" height="15" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.22 2"><defs><style>.cls-1{fill:none;stroke:#4a2338;stroke-width:1.8px;}</style></defs><g id="icons_minus_grey-900" data-name="icons minus grey-900"><g id="Group"><path id="Path" class="cls-1" d="M1.15,8.63c.83,0,1.47,0,1.92,0,5.69.39,10.21,0,13.27.08" transform="translate(-1.15 -7.73)"/></g></g></svg>
+                            <svg class="plus" width="15" height="15" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.22 15.22"><defs><style>.cls-1{fill:none;stroke:#4a2338;stroke-width:1.8px;}</style></defs><g id="icons_plus_grey-900" data-name="icons plus grey-900"><g id="Group"><path id="Path" class="cls-1" d="M8.78,1c0,.83,0,1.47,0,1.92.22,5.74,0,10.21.08,13.26" transform="translate(-1.15 -0.99)"/><path id="Path-2" data-name="Path" class="cls-1" d="M1.15,8.63c.83,0,1.47,0,1.92,0,5.69.39,10.21,0,13.27.08" transform="translate(-1.15 -0.99)"/></g></g></svg>   
+                          </div>
+              </button>
+            </h5>
+          </div>
+          <div id="collapseWhyItWorks" class="collapse" aria-labelledby="WhyItWorks" data-parent="#prodDetailsAccordion">
+            <div class="card-body">
+              {{ product.metafields.accentuate.why_it_works_accordion_text }}
+            </div>
+          </div>
+        </div>
+    {% endif %}
+  </div>
+  
+</div>
