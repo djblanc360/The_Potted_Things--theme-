@@ -35,7 +35,7 @@
        <div id="trigger1" class="spacer s0"></div>
        <div class="productImagesFixed">
          {% if product.metafields.accentuate.flag != blank %}
-         <div class="prodFlag" {% if template == "product.alternate" %} style = "top: 20px; left: 20px;" {% endif %}>{{ product.metafields.accentuate.flag}}</div>
+         <div class="prodFlag">{{ product.metafields.accentuate.flag}}</div>
          {% endif %}
          
           <div class="default-desktop product-images">
