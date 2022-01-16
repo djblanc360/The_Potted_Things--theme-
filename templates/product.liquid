@@ -1,0 +1,190 @@
+{% if product.id == 4842513367120 %}
+<style>
+  #prodBenefits, #prodIngredMobile, #prodReviews { display: none !important; }
+</style>
+{% endif %}
+
+{% if product.id == 6627802644560 %}
+<style>
+  #prodBenefits { display: none !important; }
+</style>
+{% endif %}
+
+
+<div itemscope itemtype="http://schema.org/Product">
+
+  {% assign current_variant = product.selected_or_first_available_variant %}
+  {% assign featured_image = current_variant.featured_image | default: product.featured_image %}
+
+  {% section 'product-main' %}
+
+
+{% comment %}
+  {% section 'blog-feed-product' %}
+
+  {% section 'quiz-banner' %}
+{% endcomment %}
+</div>
+
+<script>
+
+
+  $(document).ready(function() {
+
+    {% unless product.available %}
+    $("#productNav").css("display","none");
+    $(".desktopProductNav").css("display","none");
+    $("#mobileAddToCart").css("display","none");
+    {% endunless %} 	
+
+
+
+    $('.product-images').slick({
+      fade:true,
+      inifinite: false,
+      arrows: false,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      responsive: [
+        {
+          breakpoint: 767,
+          settings: {
+            fade: false,
+            slidesToShow: 1, //1.1
+          }
+        }
+      ]
+    }); 
+
+    const productSlider = $(".product-images");
+
+    productSlider.on('beforeChange', function(event, slick, currentSlide, nextSlide){
+
+
+    });
+
+    productSlider.on('afterChange', function(event, slick, currentSlide){
+
+      //setTimeout(function(){  
+      enableScroll();
+      //}, 100);
+
+    });
+
+
+    /*	SCROLLMAGIC PRODUCT DETAILS	*/
+
+    var imagesLength = '{{product.images.size }}';
+    //console.log("imagesLength: " + imagesLength);
+
+    var imagesArraySize = imagesLength - 1;
+
+
+    var progressCheck = 1/parseInt(imagesLength);
+    progressCheck = progressCheck.toFixed(2)*100;
+    //console.log("progressCheck: " + progressCheck);
+    var breakPoint = Math.ceil(progressCheck/2);
+
+
+    // init controller
+    var imageController = new ScrollMagic.Controller();
+
+    var detailsHeight = $('.productDetailsScrollable').height();
+    var imageHeight = $('.product-photo.slick-slide.slick-current.slick-active img').height();
+    var scrollAreaEnd = $('.seeAllReviews').offset.top;
+
+
+    //console.log("detailsHeight: " + detailsHeight);
+    //console.log("imageHeight: " + imageHeight);
+
+    var scrollArea = detailsHeight-imageHeight;
+    //console.log("scrollArea: " + scrollArea);
+
+    detailsHeight = parseInt(detailsHeight)*0.75;
+
+    // build scene
+    var imageScene = new ScrollMagic.Scene({
+      triggerElement: ".productDetailsScrollable",
+      duration: detailsHeight,
+      //offset: "100%",
+      triggerHook: 0.1})
+    .addTo(imageController)
+    //.addIndicators() // add indicators (requires plugin)
+    .on("progress", function (e) {
+      var state = imageScene.state();
+      //console.log("state: " + state);
+
+      var scrollDirection = e.target.controller().info("scrollDirection");
+      var progress = e.progress.toFixed(2)*100;
+      var test = progress % progressCheck;
+      //console.log("progress: " + progress);
+      //console.log("breakPoint: " + breakPoint);
+      //console.log("test: " + test);
+
+      if(state == "DURING") {
+
+        if(test) {  // if(test > breakPoint) {
+          //console.log("progress: " + progress);
+
+          disableScroll();
+
+
+          var current = $(".product-images").slick('slickCurrentSlide');
+
+          if(scrollDirection == "FORWARD") {
+
+            //console.log("scroll down");
+
+            if(current != imagesArraySize) {
+              $(".product-images").slick('slickNext');
+            } else {
+              enableScroll();
+            }
+
+          } else {  //REVERSE
+            //console.log("scroll up");
+
+            if(current != 0) {
+              $(".product-images").slick('slickPrev');
+            } else {
+              enableScroll();
+            }
+
+          }
+
+
+
+        }
+      }
+    });
+
+  });
+  /*	END --	SCROLLMAGIC PRODUCT DETAILS	*/
+
+  function disableScrolling(){
+    var x=window.scrollX;
+    var y=window.scrollY;
+    window.onscroll=function(){window.scrollTo(x, y);};
+  }
+
+  function enableScrolling(){
+    window.onscroll=function(){};
+  }
+
+  //remove paddding from product prices if on new line
+  function checkLine() {
+    var title = $(".prodTitle");
+    var price = $(".compareAtPrice");
+    if (title.offsetTop == price.offsetTop) {
+      price.removeClass("pricePadding");
+    } 
+    else {
+      price.addClass("pricePadding");
+    }
+  }
+
+  window.addEventListener("load", checkLine);
+  window.addEventListener("resize", checkLine);
+
+</script>
+
