@@ -1,12 +1,203 @@
+<style>
+
+  .custom-mobile {
+    display:none;
+  }    
+
+  
+  {% if product.metafields.accentuate.product_mobile_images %}
+  
+  @media only screen and (max-width: 767px) {
+    
+    .default-desktop {
+      display:none;
+    }
+    .custom-mobile {
+      display:block;
+    }  
+    
+  }
+  
+  {% endif %}
+
+  
+</style>
+
+
+<section id="prodTop" class="pb-md-5">
+
+  <div class="container-fluid pt-sm-5">
+
+    <div class="row {% if template == "product.alternate" %} pb-md-5 {% endif %}">      
+      
+      <div class="col-sm-6 {% if template != "product.alternate" %} px-0 pl-sm-0 {% else %} d-sm-flex justify-content-center {% endif %} productImagesScrollable" style = "overflow-x:hidden;">
+
+       <div id="trigger1" class="spacer s0"></div>
+       <div class="productImagesFixed">
+         {% if product.metafields.accentuate.flag != blank %}
+         <div class="prodFlag" {% if template == "product.alternate" %} style = "top: 20px; left: 20px;" {% endif %}>{{ product.metafields.accentuate.flag}}</div>
+         {% endif %}
+         
+          <div class="default-desktop product-images">
+            
+            
+            {% for image in product.images %}
+              <div class="product-photo">
+                {% if template == "product.alternate" %}
+                	<img src="{{ image.src | img_url: '900x900', crop: "center"  }}" alt="{{ image.alt | escape }}">
+                {% else %}
+                	<img class="lazyload" data-src="{{ image.src | img_url: 'master' }}" alt="{{ image.alt | escape }}">
+                {% endif %}
+              </div>
+            {% endfor %}
+            
+            
+          </div>
+         
+         {% if product.metafields.accentuate.product_mobile_images %}
+         <div class="custom-mobile product-images">
+           
+           {% for image in product.metafields.accentuate.product_mobile_images %}
+             <div class="product-photo"> 
+               <img class="lazyload" src="{{ image.src }}" alt="{{ image.alt }}"/>
+             </div>
+           {% endfor %}
+           
+           
+         </div>
+         {% endif %}
+         
+       </div>
+
+      </div>
+
+      <div class="col-sm-6 pt-4 pt-sm-0">
+
+      	<div class="productDetailsScrollable">  
+
+          {% include 'product-details' %}
+  	          
+          {% include 'product-details-accordion' %}
+
+        </div> 
+        
+      </div><!-- END col-->
+          
+    </div> <!-- END row-->    
+
+  </div><!-- END container-->
+</section>
+
+
+
+{% for block in section.blocks %}
+{% if block.settings.page_handle == product.handle %}
+{% case block.type %}
+    {% when "videoBlock" %}   
+    {% include 'block-pdpVideoBlock', _settings: block.settings %}
+  {% endcase %}
+{% endif %}
+{% endfor %}  
+
+
 {% schema %}
   {
-    "name": "Section name",
-    "settings": []
+    "name": "Product Blocks",
+  	"blocks": [
+    {
+      "type": "videoBlock",
+      "name": "Video Block",
+      "settings": [
+        {
+            "type": "product",
+            "id": "page_handle",
+            "label": "Product this element should be displayed on"
+        },
+        {
+          "type": "text",
+          "id": "videoURL",
+          "label": "MP4 Video URL",
+          "default": "https://cdn.shopify.com/s/files/1/1600/4387/files/9N5A5551_v3.mp4?v=1612805482"
+        },
+        {
+          "type":      "color",
+          "id":        "bgColor",
+          "label":     "Background Color",
+          "default":   "#521E39"
+        },
+        {
+          "type": "text",
+          "id": "videoHeader",
+          "label": "Video Block Header",
+          "default": "Lorem Ipsum Dolor Amet"
+        },
+        {
+          "type":      "color",
+          "id":        "fontColor",
+          "label":     "Font Color",
+          "default":   "#ffffff"
+        }
+      ]
+    },
+    {
+      "type": "sideBySide",
+      "name": "Side by Side",
+      "settings": [
+        {
+           "type":      "checkbox",
+           "id":        "checkbox",
+           "label":     "Image on Left",
+           "default":   true
+        },
+        {
+          "type":      "color",
+          "id":        "bgColor",
+          "label":     "Background Color",
+          "default":   "#521E39"
+        },
+        {
+          "type":      "color",
+          "id":        "fontColor",
+          "label":     "Font Color",
+          "default":   "#ffffff"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "header",
+          "label": "Header"
+        },
+        {
+          "type": "text",
+          "id": "richtext",
+          "label": "text"
+        },
+        {
+          "type": "text",
+          "id": "btnText",
+          "label": "Button Text"
+        },
+        {
+          "type": "color",
+          "id": "btnBgColor",
+          "label": "Button Color"
+        },
+        {
+          "type": "color",
+          "id": "btnColor",
+          "label": "Button Text Color"
+        },
+        {
+          "type": "text",
+          "id": "link",
+          "label": "Button Link"
+        }
+      ]
+    }
+	]
   }
 {% endschema %}
-
-{% stylesheet %}
-{% endstylesheet %}
-
-{% javascript %}
-{% endjavascript %}
