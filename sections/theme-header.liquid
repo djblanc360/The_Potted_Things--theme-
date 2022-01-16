@@ -1,10 +1,10 @@
-<section id="header">
+<section id="header"> 
     <div id="navbar" class="p-0">
 
       <div id="mobileMainHeader">
         <div class="container">
           <div class="row">
-
+            
           </div>
         </div>
       </div>
@@ -20,7 +20,7 @@
                     <ul class="list-inline ml-0 mb-0">
                       <li class="list-inline-item" id="menuShop"><a class="" href="/collections/all/">Shop</a></li>
                       <li class="list-inline-item"><a class="" href="/pages/hormoneassessment/">Take the Quiz</a></li>
-                      <li class="list-inline-item" id="menuJournal"><a class="" href="/blogs/journal/">Kindra Journal</a></li>
+                      <li class="list-inline-item" id="menuJournal"><a class="" href="/blogs/journal/">Green Thumb Journal</a></li>
                       <li class="list-inline-item" id="menuMore"><a class="" href="#">More</a></li>
                     </ul>
                   </div>
@@ -43,10 +43,10 @@
       <div id="dropdowns">
 
         <div id="dropdownShopAll" class="dropdownMenu">
-          <div class="container">
+          <div class="container"> 
             <div class="row">
               <div class="col-3">
-                <p class="dropdownSubTitle">Indoor</p>
+                <p class="dropdownSubTitle">Body</p>
                 <ul class="dropdownSubMenu list-unstyled pl-0 ml-0">
                   <li class="list-unstyled-item"><a href="/collections/all/products/the-daily-vaginal-lotion-applicator">Daily Vaginal Lotion & Applicator</a></li>
                   <li class="list-unstyled-item"><a href="/products/the-kindra-applicator">Aurora Applicator</a></li>
@@ -54,7 +54,7 @@
                 </ul>
               </div>
               <div class="col-3">
-                <p class="dropdownSubTitle">Tropical</p>
+                <p class="dropdownSubTitle">Peri/menopause Supplements</p>
                 <ul class="dropdownSubMenu list-unstyled pl-0 ml-0">
                   <li class="list-unstyled-item"><a href="/products/the-core-dietary-supplement">Core Supplement</a></li>
                   <li class="list-unstyled-item"><a href="/products/energy-boosting-dietary-supplement">Energy Supplement</a></li>
@@ -71,7 +71,7 @@
               </div>
               <div class="col-2">
                 <div class="dropdownShopAllContainer d-flex align-items-center justify-content-center p-3 h-100">
-                  <p><a href="/collections/all"><em>shop all</em><br/>kindra</a></p>
+                  <p><a href="/collections/all"><em>shop all</em><br/>potten things</a></p>
                 </div>
               </div>
             </div>
@@ -87,7 +87,7 @@
                 </p>
               </div>
               <div class="col-6 d-flex align-items-center mainMenuLeftBorder">
-                <p class="mb-0 d-flex align-items-center">Follow us
+                <p class="mb-0 d-flex align-items-center">Follow us 
                   <a class="mainMenuSocialIcon" href="https://www.instagram.com/ourkindra" target="_blank"><img class="lazyload" src="{{ 'montsera-background.jpg' | asset_url }}" alt="Instagram Icon" /></a>
                   <a class="mainMenuSocialIcon" href="https://www.facebook.com/groups/OurKindra/" target="_blank"><img class="lazyload" src="{{ 'montsera-background.jpg' | asset_url }}" alt="Facebook Icon" /></a>
                   <a class="mainMenuSocialIcon" href="https://www.pinterest.com/ourkindra/" target="_blank"><img class="lazyload" src="{{ 'montsera-background.jpg' | asset_url }}" alt="Pinterest Icon" /></a>
@@ -98,7 +98,7 @@
         </div>
 
         <div id="dropdownJournal" class="dropdownMenu">
-          <div class="container">
+          <div class="container"> 
             <div class="row">
               <div class="col-4">
                 <ul class="dropdownSubMenu list-unstyled pl-0 ml-0">
@@ -112,7 +112,7 @@
                   <li class="list-unstyled-item"><a href="/blogs/journal/tagged/community">Community</a></li>
                 </ul>
               </div>
-
+              
               <div class="col-2">
                 <a href="#"><img class="lazyload" src="{{ 'montsera-background.jpg' | asset_url }}" alt=""></a>
                 <p class="dropdownProdTitle"><a href="#">article.title</a></p>
@@ -130,7 +130,7 @@
           <div class="container">
             <div class="row">
               <div class="col-6 d-flex align-items-center justify-content-end">
-                <ul class="dropdownSubMenu list-unstyled pl-0 ml-0 pr-sm-5 mainMenuRightBorder">
+                <ul class="dropdownSubMenu list-unstyled pl-0 ml-0 pr-sm-5 mainMenuRightBorder"> 
                   <li class="list-unstyled-item"><a href="/pages/about">Our Story</a></li>
                   <li class="list-unstyled-item"><a href="/pages/subscription-lp">Subscribe & Save</a></li>
                   <li class="list-unstyled-item"><a href="https://kindra.referralcandy.com/" target="_blank">Give $10</a></li>
@@ -147,11 +147,11 @@
           </div>
         </div>
 
-
+        
       </div>
 
     </div>
-{% if template == 'product' %}
+{% if template == 'product' %}  
     <div id="productNav" class="hide">
       <div id="mobileProductHeader">
         <div class="container-fluid">
@@ -189,7 +189,7 @@
                 <div class="row h-100">
                   <div class="col-sm-11 d-flex align-items-center justify-content-end pr-0">
                     <form class="addCart" action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm" data-productid="{{product.id}}">
-
+                        
 
                         <select name="id" id="productSelect" data-productid="{{product.id}}">
                           {% for variant in product.variants %}
@@ -208,11 +208,11 @@
                         <div class="">
                           <span>{{ current_variant.price | money }}</span>
                         </div>
-
+                        
 
                         <!--<label for="Quantity">quantity</label>-->
                         <input style="visibility:hidden;" type="number" id="Quantity" name="quantity" value="1" min="1">
-
+                        
                         <button type="submit" name="add" id="AddToCart" class="btn btnMain">Add to cart</button>
                       </form>
                     </div>
@@ -229,10 +229,10 @@
         </div>
       </div>
     </div>
-
+  
       <div id="mobileAddToCart">
-
-
+        
+        
         <div class="container px-2">
           <div class="row">
             <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm" data-productid="{{product.id}}">
@@ -255,18 +255,19 @@
                 <div class="">
                   <span>{{ current_variant.price | money }}</span>
                 </div>
-
+                
 
                 <!--<label for="Quantity">quantity</label>-->
                 <input style="visibility:hidden;" type="number" id="Quantity" name="quantity" value="1" min="1">
-
+              
               <button type="submit" name="add" id="AddToCart" class="btn btnMain">Add to cart &mdash; <span id="dynamicPrice">{{ product.price | money }}</button>
             </form>
-
+                   
           </div>
         </div>
 
 
-      </div>
+      </div>  
 {% endif %}
 </section>
+
