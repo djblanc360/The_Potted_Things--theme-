@@ -962,20 +962,27 @@ console.log(cart);
     }
  
 
-      let url = "https://dwhome.herokuapp.com/discount.php";
-
+      //let url = "https://dwhome.herokuapp.com/discount.php";
+    let url = "https://ancient-temple-19520.herokuapp.com/getA";
+/*
   $.ajax({
       type: "POST",
       url: url,
       data: {
-            //"cartData": cart,
-            //"code": code,
-            //"customerID": customerID
+            "cartData": cart,
+            "code": code,
+            "customerID": customerID
       },
       dataType: "json",
       success: function (res) {
          	console.log(res);
-
+*/        
+      $.ajax({
+         url: url,
+         type: "POST",
+         data: "hello"
+        }).done(function(data) {
+          console.log(data);
 /*
         let subtotal = res[0];
         //var subtotal = discountInfo.slice((0, 1));
