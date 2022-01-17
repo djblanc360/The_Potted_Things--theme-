@@ -968,15 +968,15 @@ console.log(cart);
       type: "POST",
       url: url,
       data: {
-            "cartData": cart,
-            "code": code,
-            "customerID": customerID
+            //"cartData": cart,
+            //"code": code,
+            //"customerID": customerID
       },
       dataType: "json",
       success: function (res) {
          	console.log(res);
 
-
+/*
         let subtotal = res[0];
         //var subtotal = discountInfo.slice((0, 1));
         console.log("subtotal: " + subtotal);
@@ -1017,7 +1017,7 @@ console.log(cart);
          } else {
            console.log('its null');
          }
-
+*/
         
 /* 
         if(res.length > 2) {
@@ -1037,17 +1037,17 @@ console.log(cart);
 */
 
             console.log('code: ' + code);
-           	localStorage.setItem("discountCode", code);
+//           	localStorage.setItem("discountCode", code);
 			$('.discountSubmit').text('Apply');
 			$('.discountSubmit').prop('disabled', false);
         	$("input.discountCode").val(code);
 
         //PASS CODE TO CHECKOUT
-        
+/*        
         let checkoutLink = $('.continue-checkout').attr('href')+'?discount='+code;
         console.log(checkoutLink);
         $('.continue-checkout').attr('href',checkoutLink);
-
+*/
 
 
       }
