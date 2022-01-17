@@ -977,12 +977,23 @@ console.log(cart);
       success: function (res) {
          	console.log(res);
 */        
-      $.ajax({
-         url: url,
-         type: "POST",
-         data: "hello"
-        }).done(function(data) {
-          console.log(data);
+var user = {
+    'uid' : '12345'
+};
+$.ajax({
+    data: user,
+    method: 'POST',
+    url: url,
+    crossDomain: true,
+    done: function () {
+    },
+    success: function (data) {
+        console.log(JSON.stringify(data));
+    },
+    error: function (xhr, status) {
+
+    }
+});
 /*
         let subtotal = res[0];
         //var subtotal = discountInfo.slice((0, 1));
@@ -1054,12 +1065,12 @@ console.log(cart);
         let checkoutLink = $('.continue-checkout').attr('href')+'?discount='+code;
         console.log(checkoutLink);
         $('.continue-checkout').attr('href',checkoutLink);
-*/
 
 
-//      }
+
+      }
   });    //END APP REQUEST
-    
+*/    
     
     
   };
